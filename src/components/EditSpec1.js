@@ -8,15 +8,12 @@ import { editSpecAfterSave } from '../actions/spec';
 // Hint: look at PRG source
 
 const EditSpec1 = (props) => {
-    console.log('id of design being passed to edit form 1 ' + props.spec.id);
     return (
         <div>  
             <h1>Editing Specifications - Part 1</h1>
             <SpecForm1
                 specFromStore={props.spec}
                 onSubmit={(specFromForm) => {
-                    console.log('id of design being returned from form ' + specFromForm.id);
-                    console.log('kva of design being returned from form ' + specFromForm.kva);
                     props.dispatch(editSpecAfterSave(specFromForm));
                     props.history.push('/pre_edit');
                 }}

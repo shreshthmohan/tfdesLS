@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ChooseDesForm from './ChooseDesForm';
-import { startLoadSpec } from '../actions/spec';
+import { loadSpec } from '../actions/spec';
 
 const ChooseDesEdit = (props) => {
     return (
@@ -12,7 +12,7 @@ const ChooseDesEdit = (props) => {
                 customText='edit'
                 onSubmit={(data) => {
                     if (data.toLoad === true) {
-                        props.dispatch(startLoadSpec(data.id));
+                        props.dispatch(loadSpec(data.id));
                     }
                     props.history.push('/pre_edit');
                 }}

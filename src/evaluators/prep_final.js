@@ -110,7 +110,6 @@ const evalPrepFinal = (spec) => {
     params.EDUCLYR  = 0;
     params.FDUCLYR  = 0;
     params.NOCTYPE  = 0;
-    params.TURNHT   = 0;
     params.LEFTHT   = params.TURNHT;
     params.TCLRHTC  = 0.0;
     params.TCLRLTC  = 0.0;

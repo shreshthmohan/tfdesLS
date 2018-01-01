@@ -1,2 +1,7 @@
 # nw is an alias (see .bash_profile); nw.js is called like so:
 nw .
+# paste vim
+# enable paste mode 
+:set paste
+# disable paste mode
+:set nopaste

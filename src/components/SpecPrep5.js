@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import SpecForm5 from './SpecForm5';
-import { editSpec } from '../actions/spec';
+import { editSpecBeforeSave } from '../actions/spec';
 import evalPrepFinal from '../evaluators/prep_final';
 
 const SpecPrep5 = (props) => {
@@ -11,7 +11,7 @@ const SpecPrep5 = (props) => {
             <SpecForm5
                 specFromStore={props.spec}
                 onSubmit={(specFromForm) => {
-                    props.dispatch(editSpec({
+                    props.dispatch(editSpecBeforeSave({
                         ...specFromForm,
                         ...(evalPrepFinal(specFromForm))
                     }));

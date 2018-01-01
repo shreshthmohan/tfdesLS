@@ -1,28 +1,19 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-import specReducer from '../reducers/spec.js';
-import designListReducer from '../reducers/designList.js';
+import { createStore } from 'redux';
+import specReducer from '../reducers/specReducer.js';
 
 // reducer function will look at the dispatched action and 
 // return the computed next state.
+//
 
-//const storedDesigns = JSON.parse(localStorage.getItem('storedDesigns')); 
+const storedDesigns = JSON.parse(localStorage.getItem('storedDesigns')); 
 
-//const storeDefault = {
-//    storedDesigns : storedDesigns ? storedDesigns : [],
-//    loadedDesign : {}
-//};
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const storeDefault = {
+    storedDesigns : storedDesigns ? storedDesigns : [],
+    loadedDesign : {}
+};
 
 const configureStore = () => {
-    const store = createStore(
-        combineReducers({
-            loadedDesign: specReducer,
-            storedDesigns: designListReducer
-        }),
-        composeEnhancers(applyMiddleware(thunk))
-    );
+    const store = createStore(specReducer, storeDefault);
     return store;
 
 };

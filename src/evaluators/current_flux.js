@@ -45,7 +45,7 @@ const evalCurrentFlux = (spec) => {
             } else {
                 current_flux.stray_loss = 8;
             }
-            current_flux.dir_loss = spec.cu_loss / (1 + current_flux.stray_loss / 100);
+            current_flux.dir_loss = spec.cu_loss / (1 + stray_loss / 100);
             break;
 
         case spec.kva > 250 && spec.kva <= 325 :
@@ -53,7 +53,7 @@ const evalCurrentFlux = (spec) => {
             if (spec.winding_conductor_lt === 'aluminium') {
                 current_flux.stray_loss = 12;
             }
-            current_flux.dir_loss = spec.cu_loss / (1 + current_flux.stray_loss / 100);
+            current_flux.dir_loss = spec.cu_loss / (1 + stray_loss / 100);
             break;
 
         case spec.kva > 325 && spec.kva <= 500 :

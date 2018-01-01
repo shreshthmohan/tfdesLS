@@ -38,7 +38,7 @@ export default class SpecForm5A extends React.Component {
             this.props.onSubmit(
                 {
                     ...this.state,
-                    created_at: moment.utc().valueOf()
+                    created_at: moment()
                 }
             );
         }

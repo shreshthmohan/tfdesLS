@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import SpecForm4A from './SpecForm4A';
-import { editSpec } from '../actions/spec';
+import { editSpecBeforeSave } from '../actions/spec';
 import evalCostParams from '../evaluators/cost';
 
 const SpecPrep4A = (props) => {
@@ -11,7 +11,7 @@ const SpecPrep4A = (props) => {
             <SpecForm4A
                 specFromStore={props.spec}
                 onSubmit={(specFromForm) => {
-                    props.dispatch(editSpec({
+                    props.dispatch(editSpecBeforeSave({
                         ...specFromForm,
                         ...(evalCostParams(specFromForm))
                     }));

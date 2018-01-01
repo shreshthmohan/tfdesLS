@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import SpecForm3 from './SpecForm3';
-import { editSpec } from '../actions/spec';
+import { editSpecBeforeSave } from '../actions/spec';
 
 const SpecPrep3 = (props) => {
     return (
@@ -10,7 +10,7 @@ const SpecPrep3 = (props) => {
             <SpecForm3
                 specFromStore={props.spec}
                 onSubmit={(specFromForm) => {
-                    props.dispatch(editSpec(specFromForm));
+                    props.dispatch(editSpecBeforeSave(specFromForm));
                     props.history.push('/spec_prep4');
                 }}
             />
