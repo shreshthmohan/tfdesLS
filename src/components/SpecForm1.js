@@ -6,6 +6,7 @@ export default class SpecForm1 extends React.Component {
         super(props);
 
         this.state = {
+            id : props.specFromStore ? props.specFromStore.id : '',
             kva: props.specFromStore ? props.specFromStore.kva : 0,
             frequency : props.specFromStore ? props.specFromStore.frequency : 50,
             nominal_ht_voltage : props.specFromStore ? props.specFromStore.nominal_ht_voltage : 0,
