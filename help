@@ -1,0 +1,2 @@
+# nw is an alias (see .bash_profile); nw.js is called like so:
+nw .
