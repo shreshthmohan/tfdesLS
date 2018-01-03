@@ -90,174 +90,224 @@ export default class SpecForm3 extends React.Component {
 
     // use onInputChangeConservator when editing specs
     // else use onInputChangeBool
-    render() {
-        return (
-            <div>
-              <form onSubmit={this.onSubmit}>
-                  <p>Tank Specification</p>
-                  {this.props.edit === 'yes' ?
-                    <label>Conservator e
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.onSubmit}>
+          <div className="container bg-light rounded padding-tb-std">
+            <h3 className="text-center padding-top-10">Tank Specification</h3>
+            <div className="sub-container rounded">
+            <div className="form-row">
+              <div className="form-group col-md-3"> 
+                {this.props.edit === 'yes' ?
+                  <div>
+                    <label>Conservator</label>
                       <select
-                           onChange={this.onInputChangeConservator}
-                           value={this.state.conservator}
-                           name="conservator"
+                        onChange={this.onInputChangeConservator}
+                        value={this.state.conservator}
+                        name="conservator"
+                        className="form-control"
                       >
-                          <option value="true">Yes</option>
-                          <option value="false">No</option>
-                      </select>
-                    </label>
-                  :
-                    <label>Conservator
-                      <select
-                           onChange={this.onInputChangeBool}
-                           value={this.state.conservator}
-                           name="conservator"
-                      >
-                          <option value="true">Yes</option>
-                          <option value="false">No</option>
-                      </select>
-                    </label>
-                  }
-                  {this.state.conservator && 
-                      <label>Explosion Vent
-                        <select
-                             onChange={this.onInputChangeBool}
-                             value={this.state.explosion_vent}
-                             name="explosion_vent"
-                        >
-                            <option value="true">Yes</option>
-                            <option value="false">No</option>
-                        </select>
-                      </label>
-                  }
-                  <label>Rollers to be provided
-                    <select
-                         onChange={this.onInputChangeBool}
-                         value={this.state.roller}
-                         name="roller"
-                    >
                         <option value="true">Yes</option>
                         <option value="false">No</option>
-                    </select>
-                  </label>
-                  <label>Tank Shape
-                    <select
-                         onChange={this.onInputChange}
-                         value={this.state.tank_shape}
-                         name="tank_shape"
-                    >
-                        <option value="rectangular">Rectangular</option>
-                        <option value="oval">Oval</option>
-                    </select>
-                  </label>
-                  <p>Set thickness of tank sheets in mm</p>
-                  <label>Main body
-                    <input
-                         onChange={this.onInputChangeNumber}
-                         onBlur={this.onBlur}
-                         onKeyDown={this.onKeyDown}
-                         value={this.state.tank_body}
-                         name="tank_body"
-                    />
-                  </label>
-                  <label>Top cover
-                    <input
-                         onChange={this.onInputChangeNumber}
-                         onBlur={this.onBlur}
-                         onKeyDown={this.onKeyDown}
-                         value={this.state.tank_top}
-                         name="tank_top"
-                    />
-                  </label>
-                  <label>Bottom sheet
-                    <input
-                         onChange={this.onInputChangeNumber}
-                         onBlur={this.onBlur}
-                         onKeyDown={this.onKeyDown}
-                         value={this.state.tank_bottom}
-                         name="tank_bottom"
-                    />
-                  </label>
-                  <label>Radiator Type
-                    <select
-                         onChange={this.onInputChange}
-                         value={this.state.radiator_type}
-                         name="radiator_type"
-                    >
-                        <option value="pressed">Pressed</option>
-                        <option value="elliptical">Elliptical tube</option>
-                        <option value="corrugated">Corrugated</option>
-                    </select>
-                  </label>
-                  {this.state.radiator_type === 'corrugated' &&
-                      <label>Thickness of corrugated wall sheet
-                        <input
-                             onChange={this.onInputChangeNumber}
-                             onBlur={this.onBlur}
-                             onKeyDown={this.onKeyDown}
-                             value={this.state.corrugated_sheet_thickness}
-                             name="corrugated_sheet_thickness"
-                        />
-                      </label>
-                  }
-                  <label>Number of stiffeners to be provided
-                    <input
-                         onChange={this.onInputChangeNumber}
-                         onBlur={this.onBlur}
-                         onKeyDown={this.onKeyDown}
-                         value={this.state.stiffener_count}
-                         name="stiffener_count"
-                    />
-                  </label>
-                  {((this.state.kva && this.state.short_circuit_test)
-                      ||
-                      (this.state.kva > 500)) &&
-                      <div>
-                      <label>Clamp Ring Material
-                        <select
-                             onChange={this.onInputChange}
-                             value={this.state.clamp_ring_material}
-                             name="clamp_ring_material"
-                        >
-                            <option value="mild_steel">Mild Steel</option>
-                            <option value="perma">Perma</option>
-                            <option value="fibre">Fibre</option>
-                        </select>
-                      </label>
-                      <label>Clamp Ring Thickness
-                        <input
-                             onChange={this.onInputChangeNumber}
-                             onBlur={this.onBlur}
-                             onKeyDown={this.onKeyDown}
-                             value={this.state.clamp_ring_thickness}
-                             name="clamp_ring_thickness"
-                        />
-                      </label>
-                      <label>Clamp Ring Press Screw Diameter (0 if not provided)
-                        <input
-                             onChange={this.onInputChangeNumber}
-                             onBlur={this.onBlur}
-                             onKeyDown={this.onKeyDown}
-                             value={this.state.clamp_ring_press_screw_dia}
-                             name="clamp_ring_press_screw_dia"
-                        />
-                      </label>
-                      </div>
-                  }
-                  <label>Number of radial spaces/Circle-HT
-                    <input
-                         onChange={this.onInputChangeNumber}
-                         onBlur={this.onBlur}
-                         onKeyDown={this.onKeyDown}
-                         value={this.state.radial_spacer_count}
-                         name="radial_spacer_count"
-                    />
-                  </label>
-                  <button>Check & Submit Data</button>
-              </form>
+                      </select>
+                    </div>
+                :
+                  <div>
+                    <label>Conservator</label>
+                      <select
+                        onChange={this.onInputChangeBool}
+                        value={this.state.conservator}
+                        name="conservator"
+                        className="form-control"
+                      >
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                      </select>
+                  </div>
+                }
+              </div>
+            {this.state.conservator && 
+              <div className="form-group col-md-3">
+                <label>Explosion Vent</label>
+                <select
+                  onChange={this.onInputChangeBool}
+                  value={this.state.explosion_vent}
+                  name="explosion_vent"
+                  className="form-control"
+                >
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+              </div>
+            }
+            <div className="form-group col-md-3">
+              <label>Rollers to be provided</label>
+              <select
+                onChange={this.onInputChangeBool}
+                value={this.state.roller}
+                name="roller"
+                className="form-control"
+              >
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </select>
+              
             </div>
-        );
-    };
+            <div className="form-group col-md-3">
+              <label>Tank Shape</label>
+              <select
+                onChange={this.onInputChange}
+                value={this.state.tank_shape}
+                name="tank_shape"
+                className="form-control"
+              >
+                <option value="rectangular">Rectangular</option>
+                <option value="oval">Oval</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div className="sub-container rounded">
+          <h4 className="text-center">Set thickness of tank sheets in mm</h4>
+          <div className="form-row">
+            <div className="form-group col-md-4">
+              <label>Main body</label>
+              <input
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.tank_body}
+                  name="tank_body"
+                  className="form-control"
+              />
+            </div>
+            <div className="form-group col-md-4">
+              <label>Top cover</label>
+              <input
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.tank_top}
+                  name="tank_top"
+                  className="form-control"
+              />
+              
+            </div>
+            <div className="form-group col-md-4">
+              <label>Bottom sheet</label>
+              <input
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.tank_bottom}
+                  name="tank_bottom"
+                  className="form-control"
+              />
+              
+            </div>
+          </div>
+        </div>
+          <div className="sub-container rounded">
+            <div className="form-row">
+              <div className="form-group col-md-3">
+                <label className="col-form-label-sm">Radiator Type</label>
+                <select
+                  onChange={this.onInputChange}
+                  value={this.state.radiator_type}
+                  name="radiator_type"
+                  className="form-control"
+                >
+                  <option value="pressed">Pressed</option>
+                  <option value="elliptical">Elliptical tube</option>
+                  <option value="corrugated">Corrugated</option>
+                </select>
+              </div>
+              {this.state.radiator_type === 'corrugated' &&
+                <div className="form-group col-md-3">
+                  <label className="col-form-label-sm">Thickness of corrugated wall sheet</label>
+                  <input
+                    onChange={this.onInputChangeNumber}
+                    onBlur={this.onBlur}
+                    onKeyDown={this.onKeyDown}
+                    value={this.state.corrugated_sheet_thickness}
+                    name="corrugated_sheet_thickness"
+                    className="form-control"
+                  />
+                </div>
+              }
+              <div className="form-group col-md-3">
+                <label className="col-form-label-sm">Number of stiffeners to be provided</label>
+                <input
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.stiffener_count}
+                  name="stiffener_count"
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group col-md-3">
+                <label className="col-form-label-sm">Number of radial spacers/Circle-HT</label>
+                <input
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.radial_spacer_count}
+                  name="radial_spacer_count"
+                  className="form-control"
+                />
+              </div>
+            </div>
+            {((this.state.kva && this.state.short_circuit_test)
+              ||
+              (this.state.kva > 500)) &&
+              <div>
+              <label>Clamp Ring Material
+              <select
+                 onChange={this.onInputChange}
+                 value={this.state.clamp_ring_material}
+                 name="clamp_ring_material"
+              >
+                <option value="mild_steel">Mild Steel</option>
+                <option value="perma">Perma</option>
+                <option value="fibre">Fibre</option>
+              </select>
+              </label>
+              <label>Clamp Ring Thickness
+              <input
+                 onChange={this.onInputChangeNumber}
+                 onBlur={this.onBlur}
+                 onKeyDown={this.onKeyDown}
+                 value={this.state.clamp_ring_thickness}
+                 name="clamp_ring_thickness"
+              />
+              </label>
+              <label>Clamp Ring Press Screw Diameter (0 if not provided)
+              <input
+                 onChange={this.onInputChangeNumber}
+                 onBlur={this.onBlur}
+                 onKeyDown={this.onKeyDown}
+                 value={this.state.clamp_ring_press_screw_dia}
+                 name="clamp_ring_press_screw_dia"
+              />
+              </label>
+              </div>
+            }
+            
+            </div>
+            <div className="alert alert-danger">TODO Ask. There is a mistake in
+            DBASE code. You are calculating RADSPNO before KVA is input by user
+            So your value is always 6
+            Confirm if my understanding is correct
+            </div>
+            <button className="btn btn-primary">Check & Submit Data</button>
+            </div>
+        </form>
+        
+      </div>
+    );
+  };
 };
 
 // TODO set stiffener count to 0 when submitting data if corrugated wall sheet ...

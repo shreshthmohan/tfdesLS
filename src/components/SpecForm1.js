@@ -114,247 +114,338 @@ export default class SpecForm1 extends React.Component {
     };
     render() {
       return (
-         <div>
-             <form onSubmit={this.onSubmit}>
-                 <label>KVA
-                     <input
-                        onChange={this.onInputChangeNumber}
-                        onBlur={this.onBlur}
-                        onKeyDown={this.onKeyDown}
-                        value={this.state.kva}
-                        name="kva"
-                     />
-                 </label>
-                 <label>Frequency
-                     <input
-                         onChange={this.onInputChangeNumber}
-                         onBlur={this.onBlur}
-                         onKeyDown={this.onKeyDown}
-                         value={this.state.frequency}
-                         name="frequency"
-                     />
-                 </label>
-                 <label>Nominal HT Voltage
-                    <input
-                        onChange={this.onInputChangeNumber}
-                         onBlur={this.onBlur}
-                         onKeyDown={this.onKeyDown}
-                        value={this.state.nominal_ht_voltage}
-                        name="nominal_ht_voltage"
-                    />
-                 </label>
-                 <label>Nominal LT Voltage
-                    <input
-                        onChange={this.onInputChangeNumber}
-                         onBlur={this.onBlur}
-                         onKeyDown={this.onKeyDown}
-                        value={this.state.nominal_lt_voltage}
-                        name="nominal_lt_voltage"
-                    />
-                 </label>
-                 <label>Tapping % Minimum
-                    <input
-                        onChange={this.onInputChangeNumber}
-                         onBlur={this.onBlur}
-                         onKeyDown={this.onKeyDown}
-                        value={this.state.tapping_pc_min}
-                        name="tapping_pc_min"
-                    />
-                 </label>
-                 <label>Tapping % Maximum
-                    <input
-                        onChange={this.onInputChangeNumber}
-                         onBlur={this.onBlur}
-                         onKeyDown={this.onKeyDown}
-                        value={this.state.tapping_pc_max}
-                        name="tapping_pc_max"
-                    />
-                 </label>
-                 <label>Tapping Step Size
-                    <input
-                        onChange={this.onInputChangeNumber}
-                         onBlur={this.onBlur}
-                         onKeyDown={this.onKeyDown}
-                        value={this.state.tap_step_size}
-                        name="tap_step_size"
-                    />
-                 </label>
-                 <label>Tapping Switch Type
-                   <select
-                        onChange={this.onInputChange}
-                        value={this.state.tapping_switch_type}
-                        name="tapping_switch_type"
-                   >
-                       <option value="circular">Circular</option>
-                       <option value="linear">Linear</option>
-                       <option value="oltc">OLTC</option>
-                   </select>
-                 </label>
-                 <label>Indoor / Outdoor
-                   <select
-                        onChange={this.onInputChange}
-                        value={this.state.door}
-                        name="door"
-                   >
-                       <option value="outdoor">Outdoor</option>
-                       <option value="indoor">Indoor</option>
-                   </select>
-                 </label>
-                 <label>Winding Conductor HT
-                   <select
-                        onChange={this.onInputChange}
-                        value={this.state.winding_conductor_ht}
-                        name="winding_conductor_ht"
-                   >
-                       <option value="copper">Copper</option>
-                       <option value="aluminium">Aluminium</option>
-                   </select>
-                 </label>
-                 <label>Winding Conductor LT
-                   <select
-                        onChange={this.onInputChange}
-                        value={this.state.winding_conductor_lt}
-                        name="winding_conductor_lt"
-                   >
-                       <option value="copper">Copper</option>
-                       <option value="aluminium">Aluminium</option>
-                   </select>
-                 </label>
-                 <label>HT Connections
-                   <select
-                        onChange={this.onInputChange}
-                        value={this.state.ht_connections}
-                        name="ht_connections"
-                   >
-                       <option value="delta">delta</option>
-                       <option value="star">star</option>
-                   </select>
-                 </label>
-                 <label>LT Connections
-                   <select
-                        onChange={this.onInputChange}
-                        value={this.state.lt_connections}
-                        name="lt_connections"
-                   >
-                       <option value="delta">delta</option>
-                       <option value="star">star</option>
-                   </select>
-                 </label>
-                 <label>No Load Loss
-                   <input
-                        onChange={this.onInputChangeNumber}
-                         onBlur={this.onBlur}
-                         onKeyDown={this.onKeyDown}
-                        value={this.state.fe_loss}
-                        name="fe_loss"
-                   />
-                 </label>
-                 <label>Load Loss
-                   <input
-                        onChange={this.onInputChangeNumber}
-                         onBlur={this.onBlur}
-                         onKeyDown={this.onKeyDown}
-                        value={this.state.cu_loss}
-                        name="cu_loss"
-                   />
-                 </label>
-                 <label>Tolernace over Losses as per IS-2026
-                   <select
-                        onChange={this.onInputChangeBool}
-                        value={this.state.loss_tolerance}
-                        name="loss_tolerance"
-                   >
-                       <option value="true">Yes</option>
-                       <option value="false">No</option>
-                   </select>
-                 </label>
-                 <label>% Impedance
-                   <input
-                        onChange={this.onInputChangeNumber}
-                         onBlur={this.onBlur}
-                         onKeyDown={this.onKeyDown}
-                        value={this.state.impedance_pc}
-                        name="impedance_pc"
-                   />
-                 </label>
-                 <label>Tolerance over Impedance
-                   <input
-                        onChange={this.onInputChangeNumber}
-                         onBlur={this.onBlur}
-                         onKeyDown={this.onKeyDown}
-                        value={this.state.impedance_tolerance}
-                        name="impedance_tolerance"
-                   />
-                 </label>
-                 <label>Max. Top Oil Temperature Rise
-                   <input
-                        onChange={this.onInputChangeNumber}
-                         onBlur={this.onBlur}
-                         onKeyDown={this.onKeyDown}
-                        value={this.state.max_top_oil_temp_rise}
-                        name="max_top_oil_temp_rise"
-                   />
-                 </label>
-                 <label>Winding Temperature Rise
-                   <input
-                        onChange={this.onInputChangeNumber}
-                         onBlur={this.onBlur}
-                         onKeyDown={this.onKeyDown}
-                        value={this.state.winding_temp_rise}
-                        name="winding_temp_rise"
-                   />
-                 </label>
-                 <label>Cable End Box LT
-                   <select
-                        onChange={this.onInputChangeBool}
-                        value={this.state.cable_end_box_lt}
-                        name="cable_end_box_lt"
-                   >
-                       <option value="true">Yes</option>
-                       <option value="false">No</option>
-                   </select>
-                 </label>
-                 <label>Cable End Box HT
-                   <select
-                        onChange={this.onInputChangeBool}
-                        value={this.state.cable_end_box_ht}
-                        name="cable_end_box_ht"
-                   >
-                       <option value="true">Yes</option>
-                       <option value="false">No</option>
-                   </select>
-                 </label>
-                 <label>Short Circuit Test
-                   <select
-                        onChange={this.onInputChangeBool}
-                        value={this.state.short_circuit_test}
-                        name="short_circuit_test"
-                   >
-                       <option value="true">Yes</option>
-                       <option value="false">No</option>
-                   </select>
-                 </label>
-                 <label>Impulse Test
-                   <select
-                        onChange={this.onInputChangeBool}
-                        value={this.state.impulse_test}
-                        name="impulse_test"
-                   >
-                       <option value="true">Yes</option>
-                       <option value="false">No</option>
-                   </select>
-                 </label>
-                 {this.state.winding_conductor_ht === 'aluminium' ? (
-                     <label> Sealed / Conventional
-                        <select onChange={this.onInputChange} value={this.state.tank_type} name="tank_type">
-                            <option value="sealed">Sealed</option>
-                            <option value="conventional">Conventional</option>
-                        </select>
-                     </label>
-                 ) : <p></p>  }
-                 <button>Check & Submit Data</button>
-             </form>
-         </div>
+        <div>
+          <form onSubmit={this.onSubmit}>
+            <div className="sub-container margin-lr-30 rounded">
+            <div className='form-row'>
+              <div className='form-group col-md-3'>
+                <label>KVA
+                </label>
+                  <input
+                    onChange={this.onInputChangeNumber}
+                    onBlur={this.onBlur}
+                    onKeyDown={this.onKeyDown}
+                    value={this.state.kva}
+                    className='form-control'
+                    name="kva"
+                  />
+              </div>
+              <div className='form-group col-md-3'>
+                <label>Frequency
+                </label>
+                <input
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.frequency}
+                  className='form-control'
+                  name="frequency"
+                />
+              </div>
+              <div className='form-group col-md-3'>
+                <label>Nominal HT Voltage
+                </label>
+                <input
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.nominal_ht_voltage}
+                  className='form-control'
+                  name="nominal_ht_voltage"
+                />
+              </div>
+              <div className='form-group col-md-3'>
+                <label>Nominal LT Voltage
+                </label>
+                <input
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.nominal_lt_voltage}
+                  className='form-control'
+                  name="nominal_lt_voltage"
+                />
+              </div>
+            </div>
+            <div className='form-row'>
+              <div className='form-group col-md-3'>
+                <label>Tapping % Minimum
+                </label>
+                <input
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.tapping_pc_min}
+                  className='form-control'
+                  name="tapping_pc_min"
+                />
+              </div>
+              <div className='form-group col-md-3'> 
+                <label>Tapping % Maximum
+                </label>
+                <input
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.tapping_pc_max}
+                  className='form-control'
+                  name="tapping_pc_max"
+                />
+              </div>
+              <div className='form-group col-md-3'>
+                <label>Tapping Step Size
+                </label>
+                  <input
+                    onChange={this.onInputChangeNumber}
+                    onBlur={this.onBlur}
+                    onKeyDown={this.onKeyDown}
+                    value={this.state.tap_step_size}
+                    className='form-control'
+                    name="tap_step_size"
+                  />
+              </div>
+              <div className='form-group col-md-3'>
+                <label>Tapping Switch Type
+                </label>
+                <select
+                  onChange={this.onInputChange}
+                  value={this.state.tapping_switch_type}
+                  name="tapping_switch_type"
+                  className='form-control'
+                >
+                  <option value="circular">Circular</option>
+                  <option value="linear">Linear</option>
+                  <option value="oltc">OLTC</option>
+                </select>
+              </div>
+            </div>
+            <div className='form-row'>
+              
+              <div className='form-group col-md-3'>
+                <label>Winding Conductor HT
+                </label>
+                <select
+                  onChange={this.onInputChange}
+                  value={this.state.winding_conductor_ht}
+                  name="winding_conductor_ht"
+                  className='form-control'
+                >
+                  <option value="copper">Copper</option>
+                  <option value="aluminium">Aluminium</option>
+                </select>
+              </div>
+              <div className='form-group col-md-3'>
+                <label>Winding Conductor LT
+                </label>
+                <select
+                  onChange={this.onInputChange}
+                  value={this.state.winding_conductor_lt}
+                  name="winding_conductor_lt"
+                  className='form-control'
+                >
+                  <option value="copper">Copper</option>
+                  <option value="aluminium">Aluminium</option>
+                </select>
+              </div>
+              <div className='form-group col-md-3'>
+                <label>LT Connections
+                </label>
+                <select
+                  onChange={this.onInputChange}
+                  value={this.state.lt_connections}
+                  name="lt_connections"
+                  className='form-control'
+                >
+                  <option value="delta">delta</option>
+                  <option value="star">star</option>
+                </select>
+              </div>
+              <div className='form-group col-md-3'>
+                <label>HT Connections
+                </label>
+                <select
+                  onChange={this.onInputChange}
+                  value={this.state.ht_connections}
+                  name="ht_connections"
+                  className='form-control'
+                >
+                  <option value="delta">delta</option>
+                  <option value="star">star</option>
+                </select>
+              </div>
+            </div>
+            <div className="form-row">
+              <div className="form-group col-md-3">
+                <label>Indoor / Outdoor
+                </label>
+                <select
+                  onChange={this.onInputChange}
+                  value={this.state.door}
+                  name="door"
+                  className='form-control'
+                >
+                  <option value="outdoor">Outdoor</option>
+                  <option value="indoor">Indoor</option>
+                </select>
+              </div>
+              <div className="form-group col-md-3">  
+                <label>No Load Loss
+                </label>
+                <input
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.fe_loss}
+                  name="fe_loss"
+                  className='form-control'
+                />
+              </div>
+              <div className="form-group col-md-3">  
+                <label>Load Loss
+                </label>
+                <input
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.cu_loss}
+                  name="cu_loss"
+                  className='form-control'
+                 />
+              </div>
+              <div className="form-group col-md-3">  
+                <label>Tolernace over Losses as per IS-2026
+                </label>
+                  <select
+                    onChange={this.onInputChangeBool}
+                    value={this.state.loss_tolerance}
+                    name="loss_tolerance"
+                    className='form-control'
+                  >
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                  </select>
+              </div>
+            </div>
+            <div className="form-row">
+              <div className="form-group col-md-3">
+                <label>% Impedance
+                </label>
+                <input
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.impedance_pc}
+                  className="form-control"
+                  name="impedance_pc"
+                />
+              </div>
+              <div className="form-group col-md-3">
+                <label>Tolerance over Impedance
+                </label>
+                <input
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.impedance_tolerance}
+                  name="impedance_tolerance"
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group col-md-3">
+                <label>Max. Top Oil Temperature Rise
+                </label>
+                <input
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.max_top_oil_temp_rise}
+                  name="max_top_oil_temp_rise"
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group col-md-3">
+                <label>Winding Temperature Rise
+                </label>
+                <input
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.winding_temp_rise}
+                  name="winding_temp_rise"
+                  className="form-control"
+                />
+              </div>
+            </div>
+            <div className="form-row">
+              <div className="form-group col-md-3">
+                <label>Cable End Box LT
+                </label>
+                <select
+                  onChange={this.onInputChangeBool}
+                  value={this.state.cable_end_box_lt}
+                  name="cable_end_box_lt"
+                  className="form-control"
+                >
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+              </div>
+              <div className="form-group col-md-3">
+                <label>Cable End Box HT
+                </label>
+                <select
+                  onChange={this.onInputChangeBool}
+                  value={this.state.cable_end_box_ht}
+                  name="cable_end_box_ht"
+                  className="form-control"
+                >
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+              </div>
+              <div className="form-group col-md-3">
+                <label>Short Circuit Test
+                </label>
+                <select
+                  onChange={this.onInputChangeBool}
+                  value={this.state.short_circuit_test}
+                  name="short_circuit_test"
+                  className="form-control"
+                >
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+              </div>
+              <div className="form-group col-md-3">
+                <label>Impulse Test
+                </label>
+                <select
+                  onChange={this.onInputChangeBool}
+                  value={this.state.impulse_test}
+                  name="impulse_test"
+                  className="form-control"
+                >
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+              </div>
+            </div>
+            <div className="form-row">
+              {this.state.winding_conductor_ht === 'aluminium' && (
+                <div className="form-group col-md-3">
+                  <label> Sealed / Conventional
+                  </label>
+                    <select onChange={this.onInputChange} value={this.state.tank_type} name="tank_type">
+                      <option value="sealed">Sealed</option>
+                      <option value="conventional">Conventional</option>
+                    </select>
+                </div>
+              )}
+            </div>
+              <button className='btn btn-primary'>Check & Submit Data</button>
+            </div>
+          </form>
+        </div>
       );   
     }
 }

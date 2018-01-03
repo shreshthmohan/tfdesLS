@@ -27,28 +27,16 @@ module.exports = (env) => {
                 exclude: /node_modules/
             },
             {
-                use: CSSExtract.extract({
-                    use: [
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                sourceMap: true
-                            }
-                        },
-                        {
-                            loader: 'sass-loader',
-                            options: {
-                                sourceMap: true
-                            }
-                        }
-                    ]
-                }),
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ],
                 test: /\.s?css$/
 
             }
             ]
         },
-        plugins: [CSSExtract],
         devtool: isProd ? 'source-map' :'inline-source-map',
         devServer: {
             contentBase: path.join(__dirname, 'public'),

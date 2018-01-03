@@ -1,15 +1,8 @@
-import { NavLink } from 'react-router-dom';
 import React from 'react';
 
 const Header = () => {
     return (
         <header>
-            <NavLink activeClassName="is-active" to="/spec_prep1">
-                Specification Preparation
-            </NavLink>
-            <NavLink to="/choose_des_edit">Edit Specifications</NavLink>
-            <NavLink to="/choose_des_ini">Initial Core Design</NavLink>
-            <NavLink to="/choose_des_wind">Winding Design</NavLink>
         </header>
     );
 };

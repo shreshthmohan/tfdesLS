@@ -1,0 +1,25 @@
+/*
+$body-bg: #343a40;
+$body-color: #f8f9fa;
+*/
+
+@media (min-width: 64em) {
+  .container {
+    max-width: 56rem;
+  }
+}
+
+
+.margin-lr-30 {
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+.padding-tb-std {
+  padding-top: 1px;
+  padding-bottom: 1rem;
+}
+
+.padding-top-10 {
+  padding-top: 1rem;
+}

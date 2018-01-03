@@ -58,117 +58,153 @@ export default class SpecForm2 extends React.Component {
         event.preventDefault();
         this.props.onSubmit(this.state);
     };
-    render() {
-        return (
-            <div>
-                <form onSubmit={this.onSubmit}>
-                    <p>SET MINIMUM CLEARANCES IN OIL</p>
-                    <label>LT to Yoke
-                        <input
-                            type="text"
-                            onChange={this.onInputChangeNumber}
-                            onBlur={this.onBlur}
-                            onKeyDown={this.onKeyDown}
-                            value={this.state.MCLRLTY}
-                            name="MCLRLTY"
-                        />
-                    </label>
-                    <label>LT to Earth
-                        <input
-                            type="text"
-                            onChange={this.onInputChangeNumber}
-                            onBlur={this.onBlur}
-                            onKeyDown={this.onKeyDown}
-                            value={this.state.MCLRLTE}
-                            name="MCLRLTE"
-                        />
-                    </label>
-                    <label>LT to HT
-                        <input
-                            type="text"
-                            onChange={this.onInputChangeNumber}
-                            onBlur={this.onBlur}
-                            onKeyDown={this.onKeyDown}
-                            value={this.state.MCLRLTHT}
-                            name="MCLRLTHT"
-                        />
-                    </label>
-                    <label>HT to Yoke
-                        <input
-                            type="text"
-                            onChange={this.onInputChangeNumber}
-                            onBlur={this.onBlur}
-                            onKeyDown={this.onKeyDown}
-                            value={this.state.MCLRHTY}
-                            name="MCLRHTY"
-                        />
-                    </label>
-                    <label>HT to HT
-                        <input
-                            type="text"
-                            onChange={this.onInputChangeNumber}
-                            onBlur={this.onBlur}
-                            onKeyDown={this.onKeyDown}
-                            value={this.state.MCLRHTHT}
-                            name="MCLRHTHT"
-                        />
-                    </label>
-                    <label>HT to Tank
-                        <input
-                            type="text"
-                            onChange={this.onInputChangeNumber}
-                            onBlur={this.onBlur}
-                            onKeyDown={this.onKeyDown}
-                            value={this.state.MCLRHTT}
-                            name="MCLRHTT"
-                        />
-                    </label>
-                    <p>SET MINIMUM CLEARANCES IN AIR</p>
-                    <label>LT TO EARTH
-                        <input
-                            type="text"
-                            onChange={this.onInputChangeNumber}
-                            onBlur={this.onBlur}
-                            onKeyDown={this.onKeyDown}
-                            value={this.state.ACLRLTE}
-                            name="ACLRLTE"
-                        />
-                    </label>
-                    <label>LT to LT
-                        <input
-                            type="text"
-                            onChange={this.onInputChangeNumber}
-                            onBlur={this.onBlur}
-                            onKeyDown={this.onKeyDown}
-                            value={this.state.ACLRLTLT}
-                            name="ACLRLTLT"
-                        />
-                    </label>
-                    <label>HT to Earth
-                        <input
-                            type="text"
-                            onChange={this.onInputChangeNumber}
-                            onBlur={this.onBlur}
-                            onKeyDown={this.onKeyDown}
-                            value={this.state.ACLRHTE}
-                            name="ACLRHTE"
-                        />
-                    </label>
-                    <label>HT to HT
-                        <input
-                            type="text"
-                            onChange={this.onInputChangeNumber}
-                            onBlur={this.onBlur}
-                            onKeyDown={this.onKeyDown}
-                            value={this.state.ACLRHTHT}
-                            name="ACLRHTHT"
-                        />
-                    </label>
-                 <button>Check & Submit Data</button>
-                </form>
+  render() {
+    return (
+      <form onSubmit={this.onSubmit}>
+          <div className="container bg-light rounded padding-tb-std">
+        <div className="">
+          <div className="oil-clr sub-container rounded">
+          <h3 className="text-center">Set Minimum Clearances in Oil</h3>
+          <div className="form-row">
+            <div className="form-group col-md-4 col-xs-6"> 
+              <label>LT to Yoke</label>
+              <input
+                type="text"
+                onChange={this.onInputChangeNumber}
+                onBlur={this.onBlur}
+                onKeyDown={this.onKeyDown}
+                value={this.state.MCLRLTY}
+                name="MCLRLTY"
+                className="form-control"
+              />
             </div>
-        );
-    };
+            <div className="form-group col-md-4 col-xs-6">
+              <label>LT to Earth</label>
+              <input
+                type="text"
+                onChange={this.onInputChangeNumber}
+                onBlur={this.onBlur}
+                onKeyDown={this.onKeyDown}
+                value={this.state.MCLRLTE}
+                name="MCLRLTE"
+                className="form-control"
+              />
+            </div>  
+            <div className="form-group col-md-4 col-xs-6"> 
+              <label>LT to HT</label>
+              <input
+                type="text"
+                onChange={this.onInputChangeNumber}
+                onBlur={this.onBlur}
+                onKeyDown={this.onKeyDown}
+                value={this.state.MCLRLTHT}
+                name="MCLRLTHT"
+                className="form-control"
+              />
+            </div>  
+          </div>
+          <div className="form-row">
+            <div className="form-group col-md-4 col-xs-6"> 
+              <label>HT to Yoke</label>
+              <input
+                type="text"
+                onChange={this.onInputChangeNumber}
+                onBlur={this.onBlur}
+                onKeyDown={this.onKeyDown}
+                value={this.state.MCLRHTY}
+                name="MCLRHTY"
+                className="form-control"
+              />
+            </div>  
+            <div className="form-group col-md-4 col-xs-6"> 
+              <label>HT to HT</label>
+              <input
+                type="text"
+                onChange={this.onInputChangeNumber}
+                onBlur={this.onBlur}
+                onKeyDown={this.onKeyDown}
+                value={this.state.MCLRHTHT}
+                name="MCLRHTHT"
+                className="form-control"
+              />
+            </div>  
+            <div className="form-group col-md-4 col-xs-6"> 
+              <label>HT to Tank</label>
+              <input
+                type="text"
+                onChange={this.onInputChangeNumber}
+                onBlur={this.onBlur}
+                onKeyDown={this.onKeyDown}
+                value={this.state.MCLRHTT}
+                name="MCLRHTT"
+                className="form-control"
+              />
+            </div>  
+            
+        </div>
+        </div>
+        <div className="air-clr sub-container rounded">
+          <h3 className='text-center rounded'>Set Minimum Clearances in Air</h3>
+          <div className="form-row">
+            <div className="form-group col-md-3 col-xs-6">
+              <label>LT TO Earth</label>
+              <input
+                type="text"
+                onChange={this.onInputChangeNumber}
+                onBlur={this.onBlur}
+                onKeyDown={this.onKeyDown}
+                value={this.state.ACLRLTE}
+                name="ACLRLTE"
+                className="form-control"
+              />
+            </div>
+            <div className="form-group col-md-3 col-xs-6"> 
+              <label>LT to LT</label>
+              <input
+                type="text"
+                onChange={this.onInputChangeNumber}
+                onBlur={this.onBlur}
+                onKeyDown={this.onKeyDown}
+                value={this.state.ACLRLTLT}
+                name="ACLRLTLT"
+                className="form-control"
+              />
+            </div>
+            <div className="form-group col-md-3 col-xs-6"> 
+              <label>HT to Earth</label>
+              <input
+                type="text"
+                onChange={this.onInputChangeNumber}
+                onBlur={this.onBlur}
+                onKeyDown={this.onKeyDown}
+                value={this.state.ACLRHTE}
+                name="ACLRHTE"
+                className="form-control"
+              />
+            </div>
+            <div className="form-group col-md-3 col-xs-6"> 
+              <label>HT to HT</label>
+              <input
+                type="text"
+                onChange={this.onInputChangeNumber}
+                onBlur={this.onBlur}
+                onKeyDown={this.onKeyDown}
+                value={this.state.ACLRHTHT}
+                name="ACLRHTHT"
+                className="form-control"
+              />
+            </div>
+          </div>
+        </div>
+         <button className="btn btn-primary">Check & Submit Data</button>
+        </div>
+        </div>
+        
+       
+        </form>
+      
+    );
+  };
 };
 
 // SET MINIMUM CLEARANCES IN OIL
