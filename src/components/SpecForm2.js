@@ -61,7 +61,7 @@ export default class SpecForm2 extends React.Component {
   render() {
     return (
       <form onSubmit={this.onSubmit}>
-          <div className="container bg-light rounded padding-tb-std">
+          <div className="border-gray-300 container bg-light rounded padding-tb-std">
         <div className="">
           <div className="oil-clr sub-container rounded">
           <h3 className="text-center">Set Minimum Clearances in Oil</h3>

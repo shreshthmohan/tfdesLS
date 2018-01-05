@@ -8,7 +8,7 @@ import evalWindingParams from '../evaluators/winding_init';
 const SpecPrep4 = (props) => {
     return (
         <div>
-            <h1>Specification - Part 4</h1>
+            <h1 className="text-center tsdef-title">Specification - Part 4</h1>
             <SpecForm4
                 specFromStore={props.spec}
                 onSubmit={(specFromForm) => {

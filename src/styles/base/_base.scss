@@ -3,11 +3,6 @@ $body-bg: #343a40;
 $body-color: #f8f9fa;
 */
 
-@media (min-width: 64em) {
-  .container {
-    max-width: 56rem;
-  }
-}
 
 
 .margin-lr-30 {
@@ -16,10 +11,19 @@ $body-color: #f8f9fa;
 }
 
 .padding-tb-std {
-  padding-top: 1px;
+  padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
 .padding-top-10 {
   padding-top: 1rem;
+}
+
+.margin-tb-30 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.padding-20 {
+  padding: 2rem !important;
 }

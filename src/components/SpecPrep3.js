@@ -6,7 +6,7 @@ import { editSpecBeforeSave } from '../actions/spec';
 const SpecPrep3 = (props) => {
     return (
         <div>
-            <h1 className="text-center">Specification - Part 3</h1>
+            <h1 className="text-center tsdef-title">Specification - Part 3</h1>
             <SpecForm3
                 specFromStore={props.spec}
                 onSubmit={(specFromForm) => {

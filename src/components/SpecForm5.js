@@ -79,100 +79,130 @@ export default class SpecForm5 extends React.Component {
         }
     };
     render() {
-        return (
-            <div>
-                <form onSubmit={this.onSubmit}>
-                    {this.state.winding_conductor_lt === 'aluminium' &&
-                        <label>Aluminium (covered) LT per kg
-                            <input
-                                type="text"
-                                onChange={this.onInputChangeNumber}
-                                onBlur={this.onBlur}
-                                onKeyDown={this.onKeyDown}
-                                value={this.state.cost_lt}
-                                name="cost_lt"
-                            />
-                        </label>
-                    }
-                    {this.state.winding_conductor_lt === 'copper' &&
-                        <label>Copper (covered) LT per kg
-                            <input
-                                type="text"
-                                onChange={this.onInputChangeNumber}
-                                onBlur={this.onBlur}
-                                onKeyDown={this.onKeyDown}
-                                value={this.state.cost_lt}
-                                name="cost_lt"
-                            />
-                        </label>
-                    }
-                    {this.state.winding_conductor_ht === 'aluminium' &&
-                        <label>Aluminium (covered) HT per kg
-                            <input
-                                type="text"
-                                onChange={this.onInputChangeNumber}
-                                onBlur={this.onBlur}
-                                onKeyDown={this.onKeyDown}
-                                value={this.state.cost_ht}
-                                name="cost_ht"
-                            />
-                        </label>
-                    }
-                    {this.state.winding_conductor_ht === 'copper' &&
-                        <label>Copper (covered) HT per kg
-                            <input
-                                type="text"
-                                onChange={this.onInputChangeNumber}
-                                onBlur={this.onBlur}
-                                onKeyDown={this.onKeyDown}
-                                value={this.state.cost_ht}
-                                name="cost_ht"
-                            />
-                        </label>
-                    }
-                    <label>CRGO per kg
-                        <input
-                            type="text"
-                            onChange={this.onInputChangeNumber}
-                            onBlur={this.onBlur}
-                            onKeyDown={this.onKeyDown}
-                            value={this.state.cost_crgo}
-                            name="cost_crgo"
-                        />
-                    </label>
-                    <label>Oil per litre
-                        <input
-                            type="text"
-                            onChange={this.onInputChangeNumber}
-                            onBlur={this.onBlur}
-                            onKeyDown={this.onKeyDown}
-                            value={this.state.cost_oil}
-                            name="cost_oil"
-                        />
-                    </label>
-                    <label>Steel per kg
-                        <input
-                            type="text"
-                            onChange={this.onInputChangeNumber}
-                            onBlur={this.onBlur}
-                            onKeyDown={this.onKeyDown}
-                            value={this.state.cost_steel}
-                            name="cost_steel"
-                        />
-                    </label>
-                    <label>Radiators per kg
-                        <input
-                            type="text"
-                            onChange={this.onInputChangeNumber}
-                            onBlur={this.onBlur}
-                            onKeyDown={this.onKeyDown}
-                            value={this.state.cost_radiator}
-                            name="cost_radiator"
-                        />
-                    </label>
-                    <button>Check data & Submit</button>
-                </form>
-            </div>
-        );
-    };
+    return (
+      <div>
+        <form onSubmit={this.onSubmit}>
+          <div className="border-gray-300 container bg-light rounded padding-tb-std margin-tb-30">
+            <div className="sub-container rounded">
+              <div className="form-row">
+              {this.state.winding_conductor_lt === 'aluminium' &&
+                <div className="form-group col-md-4">
+                  <label>Aluminium (covered) LT per kg
+                  </label>
+                  <input
+                    type="text"
+                    onChange={this.onInputChangeNumber}
+                    onBlur={this.onBlur}
+                    onKeyDown={this.onKeyDown}
+                    value={this.state.cost_lt}
+                    name="cost_lt"
+                    className="form-control"
+                  />
+                </div>
+              }
+              {this.state.winding_conductor_lt === 'copper' &&
+                <div className="form-group col-md-4">
+                  <label>Copper (covered) LT per kg
+                  </label>
+                  <input
+                    type="text"
+                    onChange={this.onInputChangeNumber}
+                    onBlur={this.onBlur}
+                    onKeyDown={this.onKeyDown}
+                    value={this.state.cost_lt}
+                    name="cost_lt"
+                    className="form-control"
+                  />
+                </div>
+              }
+              {this.state.winding_conductor_ht === 'aluminium' &&
+                <div className="form-group col-md-4">
+                  <label>Aluminium (covered) HT per kg
+                  </label>
+                  <input
+                    type="text"
+                    onChange={this.onInputChangeNumber}
+                    onBlur={this.onBlur}
+                    onKeyDown={this.onKeyDown}
+                    value={this.state.cost_ht}
+                    name="cost_ht"
+                    className="form-control"
+                  />
+                </div>
+              }
+              {this.state.winding_conductor_ht === 'copper' &&
+                <div className="form-group col-md-4">
+                  <label>Copper (covered) HT per kg
+                  </label>
+                  <input
+                    type="text"
+                    onChange={this.onInputChangeNumber}
+                    onBlur={this.onBlur}
+                    onKeyDown={this.onKeyDown}
+                    value={this.state.cost_ht}
+                    name="cost_ht"
+                    className="form-control"
+                  />
+                </div>
+              }
+              <div className="form-group col-md-4">
+                <label>CRGO per kg
+                </label>
+                <input
+                  type="text"
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.cost_crgo}
+                  name="cost_crgo"
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group col-md-4">
+                <label>Oil per litre
+                </label>
+                <input
+                  type="text"
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.cost_oil}
+                  name="cost_oil"
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group col-md-4">
+                <label>Steel per kg
+                </label>
+                <input
+                  type="text"
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.cost_steel}
+                  name="cost_steel"
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group col-md-4">
+                <label>Radiators per kg
+                </label>
+                <input
+                  type="text"
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.cost_radiator}
+                  name="cost_radiator"
+                  className="form-control"
+                />
+              </div>
+              </div>
+              </div>
+              <button className="btn btn-primary">Check data & Submit</button>
+          </div>
+        </form>
+      </div>
+    );
+  };
 };

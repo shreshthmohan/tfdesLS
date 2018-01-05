@@ -44,25 +44,31 @@ export default class SpecForm5A extends React.Component {
         }
     };
 
-    render() {
-        return (
-            <div>
-                <p>KVA: {this.state.kva}</p>
-                <p>Nominal HT Voltage: {this.state.nominal_ht_voltage}</p>
-                <p>Nominal LT Voltage: {this.state.nominal_lt_voltage}</p>
-                <p>LT Winding Conductor: {this.state.winding_conductor_lt}</p>
-                <p>Tank Type: {this.state.tank_type}</p>
-                <form onSubmit={this.onSubmit}>
-                    <input 
-                        onChange={this.onInputChange}
-                        value={this.state.design_name}
-                        name="design_name"
-                    />
-                    <p>{this.state.name_error}</p>
-                    <button>Save Design</button>
-                </form>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="container rounded border-gray-300 bg-light padding-20 margin-tb-30">
+        <form onSubmit={this.onSubmit}>
+        <div className="">
+        <h3 className="text-center">Give a name to this design and save</h3>
+          <input 
+            onChange={this.onInputChange}
+            value={this.state.design_name}
+            name="design_name"
+            className="form-control"
+          />
+          <p>{this.state.name_error}</p>
+          </div>
+          <button className="btn btn-primary">Save Design</button>
+        </form>
+      </div>
+    );
+  }
 }
 
+
+        // /*<p>KVA: {this.state.kva}</p>
+        // <p>Nominal HT Voltage: {this.state.nominal_ht_voltage}</p>
+        // <p>Nominal LT Voltage: {this.state.nominal_lt_voltage}</p>
+        // <p>LT Winding Conductor: {this.state.winding_conductor_lt}</p>
+        // <p>Tank Type: {this.state.tank_type}</p>
+        // */

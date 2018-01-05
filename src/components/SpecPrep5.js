@@ -7,7 +7,7 @@ import evalPrepFinal from '../evaluators/prep_final';
 const SpecPrep5 = (props) => {
     return (
         <div>
-            <h1>Specification - Part 5</h1>
+            <h1 className="text-center tsdef-title">Specification - Part 5</h1>
             <SpecForm5
                 specFromStore={props.spec}
                 onSubmit={(specFromForm) => {

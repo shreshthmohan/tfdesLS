@@ -13,7 +13,7 @@ import uuid from 'uuid/v1';
 const SpecPrep1 = (props) => {
     return (
         <div>
-            <h1 className="text-center">Specification - Part 1</h1>
+            <h1 className="text-center tsdef-title">Specification - Part 1</h1>
             <SpecForm1
                 onSubmit={(specFromForm) => {
                     props.dispatch(createSpec({

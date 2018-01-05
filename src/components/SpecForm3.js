@@ -94,7 +94,7 @@ export default class SpecForm3 extends React.Component {
     return (
       <div>
         <form onSubmit={this.onSubmit}>
-          <div className="container bg-light rounded padding-tb-std">
+          <div className="border-gray-300 container bg-light rounded padding-tb-std margin-tb-30">
             <h3 className="text-center padding-top-10">Tank Specification</h3>
             <div className="sub-container rounded">
             <div className="form-row">
@@ -210,8 +210,8 @@ export default class SpecForm3 extends React.Component {
         </div>
           <div className="sub-container rounded">
             <div className="form-row">
-              <div className="form-group col-md-3">
-                <label className="col-form-label-sm">Radiator Type</label>
+              <div className="form-group col-md-6">
+                <label >Radiator Type</label>
                 <select
                   onChange={this.onInputChange}
                   value={this.state.radiator_type}
@@ -224,8 +224,8 @@ export default class SpecForm3 extends React.Component {
                 </select>
               </div>
               {this.state.radiator_type === 'corrugated' &&
-                <div className="form-group col-md-3">
-                  <label className="col-form-label-sm">Thickness of corrugated wall sheet</label>
+                <div className="form-group col-md-6">
+                  <label >Thickness of corrugated wall sheet</label>
                   <input
                     onChange={this.onInputChangeNumber}
                     onBlur={this.onBlur}
@@ -236,8 +236,10 @@ export default class SpecForm3 extends React.Component {
                   />
                 </div>
               }
-              <div className="form-group col-md-3">
-                <label className="col-form-label-sm">Number of stiffeners to be provided</label>
+            </div>
+            <div className="form-row">
+              <div className="form-group col-md-6">
+                <label >No. of stiffeners to be provided</label>
                 <input
                   onChange={this.onInputChangeNumber}
                   onBlur={this.onBlur}
@@ -247,8 +249,8 @@ export default class SpecForm3 extends React.Component {
                   className="form-control"
                 />
               </div>
-              <div className="form-group col-md-3">
-                <label className="col-form-label-sm">Number of radial spacers/Circle-HT</label>
+              <div className="form-group col-md-6">
+                <label >No. of radial spacers/Circle-HT</label>
                 <input
                   onChange={this.onInputChangeNumber}
                   onBlur={this.onBlur}
@@ -262,36 +264,44 @@ export default class SpecForm3 extends React.Component {
             {((this.state.kva && this.state.short_circuit_test)
               ||
               (this.state.kva > 500)) &&
-              <div>
-              <label>Clamp Ring Material
-              <select
-                 onChange={this.onInputChange}
-                 value={this.state.clamp_ring_material}
-                 name="clamp_ring_material"
-              >
-                <option value="mild_steel">Mild Steel</option>
-                <option value="perma">Perma</option>
-                <option value="fibre">Fibre</option>
-              </select>
-              </label>
-              <label>Clamp Ring Thickness
-              <input
-                 onChange={this.onInputChangeNumber}
-                 onBlur={this.onBlur}
-                 onKeyDown={this.onKeyDown}
-                 value={this.state.clamp_ring_thickness}
-                 name="clamp_ring_thickness"
-              />
-              </label>
-              <label>Clamp Ring Press Screw Diameter (0 if not provided)
-              <input
-                 onChange={this.onInputChangeNumber}
-                 onBlur={this.onBlur}
-                 onKeyDown={this.onKeyDown}
-                 value={this.state.clamp_ring_press_screw_dia}
-                 name="clamp_ring_press_screw_dia"
-              />
-              </label>
+              <div className="form-row">
+                <div className="form-group col-md-4">
+                  <label>Clamp Ring Material
+                  </label>
+                  <select
+                    onChange={this.onInputChange}
+                    value={this.state.clamp_ring_material}
+                    name="clamp_ring_material"
+                    className="form-control"
+                  >
+                    <option value="mild_steel">Mild Steel</option>
+                    <option value="perma">Perma</option>
+                    <option value="fibre">Fibre</option>
+                  </select>
+                </div>
+                <div className="form-group col-md-4">
+                  <label>Clamp Ring Thickness
+                  </label>
+                  <input
+                    onChange={this.onInputChangeNumber}
+                    onBlur={this.onBlur}
+                    onKeyDown={this.onKeyDown}
+                    value={this.state.clamp_ring_thickness}
+                    name="clamp_ring_thickness"
+                    className="form-control"
+                  />
+                </div>
+                <div className="form-group col-md-4">
+                  <label>Clamp Ring Press Screw Diameter (0 if not provided)</label>
+                  <input
+                    onChange={this.onInputChangeNumber}
+                    onBlur={this.onBlur}
+                    onKeyDown={this.onKeyDown}
+                    value={this.state.clamp_ring_press_screw_dia}
+                    name="clamp_ring_press_screw_dia"
+                    className="form-control"
+                  />
+                </div>
               </div>
             }
             

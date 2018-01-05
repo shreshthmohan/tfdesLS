@@ -1,6 +1,6 @@
 @import './base/base';
 
-
+// write code here if you want to override any bootstrap variables
 
 
 
@@ -11,9 +11,42 @@
 
 @import '../../node_modules/bootstrap/scss/bootstrap';
 
+// write code after this to use variables defined in bootstrap
+
 .sub-container {
   padding: 1rem;
   margin-bottom: 1rem;
   margin-top: 1rem;
   background: $gray-300;
+}
+
+@media (min-width: 64rem) {
+  .container {
+    max-width: 56rem;
+  }
+  .narrow-container {
+    max-width: 36rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.gray-400 {
+  background: $gray-400;
+}
+
+.border-gray-300 {
+  border: 1px solid $gray-300;
+}
+
+.tfdes-title {
+  border-radius: 4px;
+  padding: 1rem;
+  margin: 1rem;
+  background: $gray-300;
+}
+
+.home-menu > a:hover {
+  background: $gray-300;
+
 }

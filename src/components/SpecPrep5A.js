@@ -6,7 +6,7 @@ import { saveSpec } from '../actions/spec';
 const SpecPrep5A = (props) => {
     return (
         <div>
-            <h1>Specification - Part 5A</h1>
+            <h1 className="text-center tsdef-title">Specification - Part 5A</h1>
             <SpecForm5A 
                 specFromStore={props.spec}
                 onSubmit={(specFromForm) => {

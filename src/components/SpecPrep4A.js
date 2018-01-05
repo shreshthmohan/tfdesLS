@@ -7,7 +7,7 @@ import evalCostParams from '../evaluators/cost';
 const SpecPrep4A = (props) => {
     return (
         <div>
-            <h1>4A</h1>
+            <h1 className="text-center tsdef-title">Specification - Part 4 - Continued</h1>
             <SpecForm4A
                 specFromStore={props.spec}
                 onSubmit={(specFromForm) => {

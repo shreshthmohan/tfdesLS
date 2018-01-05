@@ -256,8 +256,8 @@ export default class SpecForm1 extends React.Component {
                   name="lt_connections"
                   className='form-control'
                 >
-                  <option value="delta">delta</option>
-                  <option value="star">star</option>
+                  <option value="delta">Delta</option>
+                  <option value="star">Star</option>
                 </select>
               </div>
               <div className='form-group col-md-3'>
@@ -269,8 +269,8 @@ export default class SpecForm1 extends React.Component {
                   name="ht_connections"
                   className='form-control'
                 >
-                  <option value="delta">delta</option>
-                  <option value="star">star</option>
+                  <option value="delta">Delta</option>
+                  <option value="star">Star</option>
                 </select>
               </div>
             </div>
@@ -435,7 +435,12 @@ export default class SpecForm1 extends React.Component {
                 <div className="form-group col-md-3">
                   <label> Sealed / Conventional
                   </label>
-                    <select onChange={this.onInputChange} value={this.state.tank_type} name="tank_type">
+                    <select
+                      onChange={this.onInputChange}
+                      value={this.state.tank_type}
+                      name="tank_type"
+                      className="form-control"
+                    >
                       <option value="sealed">Sealed</option>
                       <option value="conventional">Conventional</option>
                     </select>
