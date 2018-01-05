@@ -7,7 +7,7 @@ export default class ChooseDesForm extends React.Component {
         super(props);
 
         this.state = {
-            storedDesigns : props.storedDesigns,
+            designCount: props.designCount,
             selectedDesign : props.loadedDesign.id || '',
             loadedDesign : props.loadedDesign.id || '',
             error: ''
@@ -23,9 +23,11 @@ export default class ChooseDesForm extends React.Component {
         });
 
     };
+
+    
     onSubmit = (event) => {
         event.preventDefault();
-        if (this.state.storedDesigns.length != 0 && this.state.selectedDesign == '') {
+        if (this.props.storedDesigns.length != 0 && this.state.selectedDesign == '') {
             this.setState(() => {
                 return {
                     error: 'No design selected'
@@ -45,14 +47,16 @@ export default class ChooseDesForm extends React.Component {
     render() {
         return (
             <div>
-            {this.state.storedDesigns.length === 0 ?
+                    <Link to="/">Go Home</Link>
+            {this.props.designCount === 0 ?
                 <h2>
                     No saved designs 
                     <Link to="/">Go Home</Link>
                 </h2> :
                 <h2>Choose design to {this.props.customText}</h2>
             }
-            {this.state.storedDesigns.length > 0 &&
+            {this.props.storedDesigns.length > 0 &&
+                <div>
                 <form onSubmit={this.onSubmit}>
                     <select
                         onChange={this.onInputChange}
@@ -61,7 +65,7 @@ export default class ChooseDesForm extends React.Component {
                     >
                         {this.state.selectedDesign == '' &&
                             <option value="">Nothing selected</option>}
-                    {this.state.storedDesigns.map((des) => {
+                    {this.props.storedDesigns.map((des) => {
                         return (
                             <option key={des.id} value={des.id}>
                                 {des.design_name + ' '}
@@ -71,6 +75,7 @@ export default class ChooseDesForm extends React.Component {
                     </select>
                     <button>Edit</button>
                 </form>
+                </div>
             }
             </div>
         );

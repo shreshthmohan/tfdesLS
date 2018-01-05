@@ -4,13 +4,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ChooseDesForm from './ChooseDesForm';
 import { loadSpec } from '../actions/spec';
+import getFilteredDesigns from '../selectors/designs';
+import DesFilter from './DesFilter';
 
 const ChooseDesEdit = (props) => {
     return (
         <div>
+            <DesFilter />
             <ChooseDesForm
                 storedDesigns={props.storedDesigns}
                 loadedDesign={props.loadedDesign}
+                designCount={props.designCount}
+                filter={props.filter}
+                dispatch={props.dispatch}
                 customText='edit'
                 onSubmit={(data) => {
                     if (data.toLoad === true) {
@@ -25,8 +31,10 @@ const ChooseDesEdit = (props) => {
 
 const mapStateToProps = (state, props) => {
     return {
-        storedDesigns: state.storedDesigns,
-        loadedDesign: state.loadedDesign || 'no loaded design'
+        storedDesigns: getFilteredDesigns(state.storedDesigns, state.filter),
+        designCount: state.storedDesigns.length,
+        loadedDesign: state.loadedDesign || 'no loaded design',
+        filter: state.filter
     };
 };
 

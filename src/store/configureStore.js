@@ -1,4 +1,4 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import specReducer from '../reducers/specReducer.js';
 
 // reducer function will look at the dispatched action and 
@@ -9,11 +9,12 @@ const storedDesigns = JSON.parse(localStorage.getItem('storedDesigns'));
 
 const storeDefault = {
     storedDesigns : storedDesigns ? storedDesigns : [],
-    loadedDesign : {}
+    loadedDesign : {},
+    filter: ''
 };
 
 const configureStore = () => {
-    const store = createStore(specReducer, storeDefault);
+    const store = createStore(specReducer, storeDefault, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
     return store;
 
 };

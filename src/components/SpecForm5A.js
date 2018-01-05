@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import uuid from 'uuid/v1';
 
 export default class SpecForm5A extends React.Component {
     constructor(props) {
@@ -7,6 +8,7 @@ export default class SpecForm5A extends React.Component {
 
         this.state = {
             ...(props.specFromStore),
+            id: props.specFromStore ? (props.specFromStore.id ? props.specFromStore.id : uuid()) : uuid(),
             design_name: '',
             name_error: ''
         };
@@ -24,6 +26,9 @@ export default class SpecForm5A extends React.Component {
             });
         }
     };
+
+    // TODO currently user cannot completely erase text after typing something in
+    // fix that
 
     onSubmit = (event) => {
         event.preventDefault();

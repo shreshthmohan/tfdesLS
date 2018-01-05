@@ -10,6 +10,12 @@ const specReducerDefaultState = {
 // not at createspec/specprep1
 const specReducer = (state = specReducerDefaultState, action) => {
     switch (action.type) {
+        case 'SET_TEXT_FILTER':
+            return {
+                storedDesigns :     state.storedDesigns, 
+                loadedDesign : state.loadedDesign,
+                filter: action.text
+            };
         case 'CREATE_SPEC' :
             return {
                 storedDesigns :     state.storedDesigns, 
