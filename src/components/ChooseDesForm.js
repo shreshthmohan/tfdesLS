@@ -37,7 +37,7 @@ export default class ChooseDesForm extends React.Component {
             this.props.onSubmit({
                 id : this.state.selectedDesign,
                 // should be false if design is already loaded
-                toLoad : this.state.loadedDesign === ''
+                toLoad : this.state.loadedDesign === '' || this.state.selectedDesign != this.state.loadedDesign
 
             });
         }

@@ -16,6 +16,9 @@ export default class WindingDesForm1 extends React.Component {
         this.evalWindingType();
     }
 
+    // TODO: Fix later
+    // Repeated code. Already have a function in winding_init.js
+    // Can just call it instead of the code below
     evalWindingType = () => {
         if (!this.state.hv_winding || !this.state.lv_winding) {
             let lv_winding = this.state.lv_winding;

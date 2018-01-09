@@ -25,6 +25,7 @@ export const editSpecAfterSave = (data) => {
     const design = JSON.parse(localStorage.getItem(data.id));
 
     localStorage.setItem(data.id, JSON.stringify(data));
+    localStorage.setItem('latestDesign', data.id);
     if (!!design) {
         localStorage.setItem(data.id, JSON.stringify({
             ...design, ...data
@@ -42,6 +43,7 @@ export const saveSpec = (data) => {
 
     // Storing named design to localStorage
     localStorage.setItem(data.id, JSON.stringify(data));
+    localStorage.setItem('latestDesign', data.id);
 
     // Getting array of stored designs from localStorage
     const storedDesigns = localStorage.getItem('storedDesigns');
@@ -82,6 +84,7 @@ export const saveSpec = (data) => {
 export const loadSpec = (id) => {
 
     const data = JSON.parse(localStorage.getItem(id));
+    localStorage.setItem('latestDesign', id);
 
     return {
         type: 'LOAD_SPEC',

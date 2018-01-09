@@ -6,10 +6,12 @@ import specReducer from '../reducers/specReducer.js';
 //
 
 const storedDesigns = JSON.parse(localStorage.getItem('storedDesigns')); 
+const latestDesignId = localStorage.getItem('latestDesign');
+const latestDesign = JSON.parse(localStorage.getItem(latestDesignId));
 
 const storeDefault = {
     storedDesigns : storedDesigns ? storedDesigns : [],
-    loadedDesign : {},
+    loadedDesign : latestDesign ? latestDesign : {},
     filter: ''
 };
 
