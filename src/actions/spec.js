@@ -1,11 +1,12 @@
-// data has two objects: spec and clearances
 export const createSpec = (data) => {
 
-
+    // Add CONDSP to newly created design spec
+    let CONDSP = localStorage.getItem('CONDSP');
+    CONDSP = CONDSP ? JSON.parse(CONDSP) : {};
 
     return {
         type: 'CREATE_SPEC',
-        spec: data
+        spec: {...data, ...CONDSP}
     };
 };
 

@@ -121,14 +121,14 @@ export default class SpecForm1 extends React.Component {
               <div className='form-group col-md-3'>
                 <label>KVA
                 </label>
-                  <input
-                    onChange={this.onInputChangeNumber}
-                    onBlur={this.onBlur}
-                    onKeyDown={this.onKeyDown}
-                    value={this.state.kva}
-                    className='form-control'
-                    name="kva"
-                  />
+                <input
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.kva}
+                  className='form-control'
+                  name="kva"
+                />
               </div>
               <div className='form-group col-md-3'>
                 <label>Frequency

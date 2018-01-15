@@ -1,6 +1,8 @@
 const evalClearances = (spec) => {
     
     let clearances = {};
+
+
     
     switch (true) {
         case spec.nominal_ht_voltage < 1100 :
@@ -99,6 +101,8 @@ const evalClearances = (spec) => {
     clearances.MNOHTC=1;
     clearances.FINCLRHTY=0;
     clearances.FINCLRLTY=0;
+    clearances.LTGAP=0;
+    clearances.LTGAPCR=0;
 
     return clearances;
 };

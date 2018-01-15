@@ -58,21 +58,31 @@ export default class ChooseDesForm extends React.Component {
             {this.props.storedDesigns.length > 0 &&
                 <div>
                 <form onSubmit={this.onSubmit}>
-                    <select
-                        onChange={this.onInputChange}
-                        value={this.state.selectedDesign}
-                        name="selectedDesign"
-                    >
-                        {this.state.selectedDesign == '' &&
-                            <option value="">Nothing selected</option>}
+
                     {this.props.storedDesigns.map((des) => {
-                        return (
-                            <option key={des.id} value={des.id}>
-                                {des.design_name + ' '}
-                                {moment(des.created_at).format('D MMM Y')}
-                            </option>);
+                      return (
+                        <div
+                          key={des.id+des.design_name}
+                        >
+                        <input
+                          type="radio"
+                          name="selectedDesign"
+                          onChange={this.onInputChange}
+                          id={des.id+des.design_name}
+                          value={des.id}
+                          key={des.id+des.design_name}
+                        />
+                        <label
+                          htmlFor={des.id+des.design_name}
+                        >
+                          {des.design_name + ' '}
+                          {moment(des.created_at).format('D MMM Y')}
+                        </label>
+                        </div>
+                      );
+
                     })}
-                    </select>
+                    <label></label>
                     <button>Edit</button>
                 </form>
                 </div>

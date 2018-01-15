@@ -8,11 +8,13 @@ import specReducer from '../reducers/specReducer.js';
 const storedDesigns = JSON.parse(localStorage.getItem('storedDesigns')); 
 const latestDesignId = localStorage.getItem('latestDesign');
 const latestDesign = JSON.parse(localStorage.getItem(latestDesignId));
+const CONDSP = JSON.parse(localStorage.getItem('CONDSP'));
 
 const storeDefault = {
     storedDesigns : storedDesigns ? storedDesigns : [],
     loadedDesign : latestDesign ? latestDesign : {},
-    filter: ''
+    filter: '',
+    CONDSP : CONDSP ? CONDSP : {}
 };
 
 const configureStore = () => {

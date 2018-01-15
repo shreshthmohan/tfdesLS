@@ -2,10 +2,6 @@ const evalCrossHT = (spec) => { // get spec and index
 
     let params = {};
 
-    if (!spec.CAXLTOL) {
-        spec.CAXLTOL = 1.02;
-        params.CAXLTOL = 1.02;
-    }
 
     const newCoilArray = spec.coilArray.map((coil) => {
         const turnsPerLayer = coil.coil_turns / coil.coil_layers+ 1; 

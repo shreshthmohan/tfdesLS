@@ -81,6 +81,9 @@ export default class SpecForm4A extends React.Component {
             stray_loss: this.evalStrayLoss()
         });
     };
+
+  // lt_coil_count = NLCOIL
+  // lt_coil_clearance = CLRLTLT
   render() {
 
     return (
@@ -201,9 +204,10 @@ export default class SpecForm4A extends React.Component {
                 <label>HT Conductor Standard SWG 
                 </label>
                 <select
-                   onChange={this.onInputChange}
-                   value={this.state.ht_conductor_std_swg}
-                   name="ht_conductor_std_swg"
+                  onChange={this.onInputChange}
+                  value={this.state.ht_conductor_std_swg}
+                  name="ht_conductor_std_swg"
+                  className="form-control"
                 >
                   <option value="s">Standard?</option>
                   <option value="n">Non-Standard?</option>

@@ -19,7 +19,7 @@ const DesFilter = (props) => {
 
 const mapStateToProps = (state, props) => {
     return {
-        filter: state.filter
+        filter: state.filter || ''
     };
 };
 

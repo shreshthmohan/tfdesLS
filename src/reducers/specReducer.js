@@ -3,11 +3,6 @@ const specReducerDefaultState = {
     loadedDesign: {}
 };
 
-// actions are 'dispatch'ed
-// modify how storedDesigns is being updated
-// because we are giving a name and creation data via EDIT_SPEC
-// But then we should only store design in localstorage upon specprep5a
-// not at createspec/specprep1
 const specReducer = (state = specReducerDefaultState, action) => {
     switch (action.type) {
         case 'SET_TEXT_FILTER':
@@ -26,7 +21,7 @@ const specReducer = (state = specReducerDefaultState, action) => {
 
             return {
                 storedDesigns:      state.storedDesigns,
-                loadedDesign:       { ...state.loadedDesign, ...action.spec}
+                loadedDesign:       { ...state.loadedDesign, ...action.spec},
             };
 
         case 'SAVE_SPEC' : 
@@ -46,6 +41,13 @@ const specReducer = (state = specReducerDefaultState, action) => {
             return {
                 storedDesigns:      state.storedDesigns,
                 loadedDesign:       action.spec
+            };
+        case 'SET_WDG_TOL' : 
+            return {
+                storedDesigns :     state.storedDesigns, 
+                loadedDesign : state.loadedDesign,
+                CONDSP : {...state.CONDSP, ...action.CONDSP}
+
             };
         default:
             return state;

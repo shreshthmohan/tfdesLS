@@ -30,6 +30,10 @@ import WindingDes1 from '../components/WindingDes1.js';
 import WindingDes2 from '../components/WindingDes2.js';
 import WindingDes2A from '../components/WindingDes2A.js';
 import WindingDes3 from '../components/WindingDes3.js';
+import WindingDes3A from '../components/WindingDes3A.js';
+import SetWdgTolChoose from "../components/SetWdgTolChoose.js";
+import SetWdgTolTight from "../components/SetWdgTolTight.js";
+import SetWdgTolFinal from "../components/SetWdgTolFinal.js";
 
 import Header from '../components/Header.js';
 
@@ -70,6 +74,10 @@ const AppRouter = () => {
                 <Route path='/winding_des2' component={WindingDes2} />
                 <Route path='/winding_des2a' component={WindingDes2A} />
                 <Route path='/winding_des3' component={WindingDes3} />
+                <Route path='/winding_des3a' component={WindingDes3A} />
+                <Route path='/set_wdg_tol_choose' component={SetWdgTolChoose} />
+                <Route path='/set_wdg_tol_tight' component={SetWdgTolTight} />
+                <Route path='/set_wdg_tol_final' component={SetWdgTolFinal} />
 
             </Switch>
             </div>
