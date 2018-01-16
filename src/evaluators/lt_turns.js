@@ -6,6 +6,7 @@ const evalLTTurns = (spec) => {
     let x = 0;
 
 
+   // turns_lt = TURNLT
 // PARAMETER KVA,NOMHTV,SCTEST,LVLEG,CTYPE,COSTFACT,TURNLT
     switch (true) {
         case spec.winding_conductor_ht === 'aluminium' : 

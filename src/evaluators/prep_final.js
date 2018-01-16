@@ -18,7 +18,6 @@ const evalPrepFinal = (spec) => {
 
     // final params 
     //
-    params.CAXLTOL = 1.02;
 
     params.DLVINS = 3;
     params.DHVINS = 3;

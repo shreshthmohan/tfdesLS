@@ -32,7 +32,11 @@ export default class SpecForm1 extends React.Component {
             short_circuit_test : props.specFromStore ? props.specFromStore.short_circuit_test : false,
             impulse_test : props.specFromStore ? props.specFromStore.impulse_test : false,
             tank_type : props.specFromStore ? props.specFromStore.tank_type : 'conventional',
-            error: ''
+            error: '',
+            HTGAP: 0,
+            LTDUCT: 0,
+            DLVEDDY: 0,
+            LEND: 0
         };
     }
 

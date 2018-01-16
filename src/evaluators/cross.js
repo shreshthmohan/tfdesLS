@@ -4,6 +4,7 @@ const evalCrossHT = (spec) => { // get spec and index
 
 
     const newCoilArray = spec.coilArray.map((coil) => {
+        // turnsPerLayer = TPL
         const turnsPerLayer = coil.coil_turns / coil.coil_layers+ 1; 
         console.log('Turns per layer:'+  turnsPerLayer);
 

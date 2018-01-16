@@ -82,8 +82,19 @@ export default class WindingDesLVSpiral2 extends React.Component {
                   onChange={this.onInputChangeNumber}
                   onBlur={this.onBlur}
                   onKeyDown={this.onKeyDown}
-                  value={this.state.NLTLYR}
-                  name="NLTLYR"
+                  value={this.state.LTDUCT}
+                  name="LTDUCT"
+              />
+              <label>
+                LT inter-layer Kraft Paper in mil
+              </label>
+              <input
+                  type="text"
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.LTKRAFT}
+                  name="LTKRAFT"
               />
             </div>
           }
@@ -100,21 +111,17 @@ export default class WindingDesLVSpiral2 extends React.Component {
               </select>
             </div>
           }
-          {this.state.lt_coil_count == 2 &&
-            <div>
-              <label>
-                Clearance between LT Coils
-              </label>
-              <input
-                  type="text"
-                  onChange={this.onInputChangeNumber}
-                  onBlur={this.onBlur}
-                  onKeyDown={this.onKeyDown}
-                  value={this.state.lt_coil_clearance}
-                  name="lt_coil_clearance"
-              />
-            </div>
-          }
+          <label>
+            Clearance between LT Coils
+          </label>
+          <input
+            type="text"
+            onChange={this.onInputChangeNumber}
+            onBlur={this.onBlur}
+            onKeyDown={this.onKeyDown}
+            value={this.state.lt_coil_clearance}
+            name="lt_coil_clearance"
+          />
           {this.state.LTGAPBOOL &&
             <div>
               <label>
