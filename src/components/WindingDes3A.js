@@ -15,7 +15,16 @@ const WindingDes3A = (props) => {
       <h1 className="text-center tfdes-title">
         Winding Design - Step 3A
       </h1>
-      {props.spec.lv_winding == 'spiral' && <WindingDesLVSpiral/>}
+      {props.spec.lv_winding == 'spiral' &&
+        <WindingDesLVSpiral
+          onSubmit={() => {
+            props.history.push('/3b')
+          }}
+        />
+      }
+      {props.spec.lv_winding == 'crossover' &&
+        <WindingDesLVCross />
+      }
     </div>
 
   );

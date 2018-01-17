@@ -3,8 +3,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { editSpecAfterSave } from '../actions/spec';
 // TODO import spiral1 & 2
-import { evalSpiral2 } from '../evaluators/eval_spiral';
+import { evalSpiral1, evalSpiral2 } from '../evaluators/eval_spiral';
 import  WindingDesLVSpiral2  from "./WindingDesLVSpiral2";
+import  WindingDesLVSpiral1  from "./WindingDesLVSpiral1";
 
 const WindingDesLVSpiral = (props) => {
   return (
@@ -15,11 +16,18 @@ const WindingDesLVSpiral = (props) => {
           onSubmit={(specFromForm) => {
             const data = evalSpiral2(specFromForm);
             props.dispatch(editSpecAfterSave({...specFromForm, ...data}));
-            // history.push
+            props.history.push('/winding_des3b');
           }}
         />
         :
-        <div> Spiral 1</div>
+        <WindingDesLVSpiral1
+          specFromStore={props.spec}
+          onSubmit={(specFromForm) => {
+            const data = evalSpiral1(specFromForm);
+            props.dispatch(editSpecAfterSave({...specFromForm, ...data}));
+            props.history.push('/winding_des3b');
+          }}
+        />
         
       }
     </div>

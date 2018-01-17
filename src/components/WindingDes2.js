@@ -22,10 +22,12 @@ const WindingDes2 = (props) => {
                     specFromStore={props.spec}
                     onSubmit={(specFromForm) => {
                         if (specFromForm.retryDisc === true) {
+                            props.history.push('/')
                             props.history.push('/winding_des2');
                         } else {
                             props.dispatch(editSpecAfterSave(specFromForm));
-                            props.history.push('/');
+                            props.history.push('/winding_des3');
+                            // TODO : Des3?
                         }
                     }}
                 />

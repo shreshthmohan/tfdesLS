@@ -36,10 +36,23 @@ import SetWdgTolTight from "../components/SetWdgTolTight.js";
 import SetWdgTolFinal from "../components/SetWdgTolFinal.js";
 
 import Header from '../components/Header.js';
+import WindingDesLVSpiral from '../components/WindingDesLVSpiral';
 
 const history = createHistory();
 
 const AppRouter = () => {
+    const Refresh = ({ path = '/' }) => (
+        <Route
+            path={path}
+            component={({ history, location, match }) => {
+                history.replace({
+                    ...location,
+                    pathname:location.pathname.substring(match.path.length)
+                });
+                return null;
+            }}
+        />
+    );
     return (
         <Router history={history}>
             <div>
@@ -78,6 +91,8 @@ const AppRouter = () => {
                 <Route path='/set_wdg_tol_choose' component={SetWdgTolChoose} />
                 <Route path='/set_wdg_tol_tight' component={SetWdgTolTight} />
                 <Route path='/set_wdg_tol_final' component={SetWdgTolFinal} />
+                <Route path='/wdg_des_lv_spiral' component={WindingDesLVSpiral} />
+                <Refresh path='/refresh' />
 
             </Switch>
             </div>
