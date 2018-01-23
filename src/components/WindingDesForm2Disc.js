@@ -99,7 +99,7 @@ export default class WindingDesForm2Disc extends React.Component {
 
     this.setState(() => {
       return {
-        ...discHV2Result,
+        ...discHV2AResult,
         evalDiscHV2ADone: true,
         ...discHV3Result,
         evalDiscHV3Done: true
@@ -116,7 +116,7 @@ export default class WindingDesForm2Disc extends React.Component {
   retryDisc = (event) => {
     event.preventDefault();
 
-    this.props.onSubmit({retryDisc: true});
+    this.props.onSubmit({...this.state, retryDisc: true});
   }; 
 
   render() {

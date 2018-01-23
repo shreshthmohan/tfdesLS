@@ -21,6 +21,7 @@ const WindingDes3A = (props) => {
       </h1>
       {props.spec.lv_winding == 'spiral' &&
         <WindingDesLVSpiral
+          history={props.history}
           onSubmit={() => {
             props.history.push('/winding_des3b'); 
 
