@@ -91,6 +91,7 @@ export const evalSpiral2 = (data) => {
   let WDI;
   
   while (XXX == 1 || NWO != NW) {
+    console.log('while executed');
     NWO = NW;
     if (DEP > C5) {
       if (lt_transpose === true) {
@@ -308,6 +309,7 @@ export const evalSpiral1 = (data) => {
     ,MAXWDCU
   } = data;
 
+
   let C3,C5,C6;
 
   if (LTGAPBOOL === false) {
@@ -325,6 +327,7 @@ export const evalSpiral1 = (data) => {
   }
   const TPERLYR = turns_lt / NLTLYR;
 
+
   switch (true) {
     case lt_area < 100 :
       LEND = LEND1;
@@ -339,11 +342,12 @@ export const evalSpiral1 = (data) => {
       break;
   }
 
+
   const WHXX = (WHLT - 2 * LEND) * C3;
   let ND = 1;
   let NW = 1;
   let XXX = 1;
-  let DEP = C5 - 1;
+  let DEP = roundFloat(C5 - 1, 1);
   let NWO = 0;
   let WDT = 0;
   let X = 0;
@@ -351,6 +355,7 @@ export const evalSpiral1 = (data) => {
   let WDI;
   let I;
   let WD;
+
 
   while (XXX == 1 || NWO != NW) {
     NWO = NW;
@@ -402,12 +407,16 @@ export const evalSpiral1 = (data) => {
       I = I + 1;
     }
     WD = WDI - covering_lt;
-    WD = Math.floor(100 * WD + 0.5) / 100;
+    WD = roundFloat(Math.floor(100 * WD + 0.5) / 100, 2);
     DEP = lt_area / WD / NW / ND;
     if (DEP <= C5) {
       XXX = 0;
     }
   }
+
+  // TODO ask, not converging 
+
+  console.log('after while (XXX == 1 || NWO != NW) ');
 
   I = 1;
   while (DEP > C5) {

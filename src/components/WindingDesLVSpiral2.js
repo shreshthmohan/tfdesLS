@@ -71,6 +71,7 @@ export default class WindingDesLVSpiral2 extends React.Component {
     const Fragment = React.Fragment;
     return(
       <div>
+        <h4>Spiral 2</h4>
         <form onSubmit={this.onSubmit}>
           {this.state.NLTLYR > 1 &&
             <div>

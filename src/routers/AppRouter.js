@@ -93,7 +93,6 @@ const AppRouter = () => {
                 <Route path='/set_wdg_tol_choose' component={SetWdgTolChoose} />
                 <Route path='/set_wdg_tol_tight' component={SetWdgTolTight} />
                 <Route path='/set_wdg_tol_final' component={SetWdgTolFinal} />
-                <Route path='/wdg_des_lv_spiral' component={WindingDesLVSpiral} />
                 <Route path='/set_winding_type' component={SetWindingType} />
                 <Refresh path='/refresh' />
 

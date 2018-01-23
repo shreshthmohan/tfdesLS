@@ -71,6 +71,7 @@ export default class WindingDesLVSpiral1 extends React.Component {
     const Fragment = React.Fragment;
     return(
       <div>
+        <h4>Spiral 1</h4>
         <form onSubmit={this.onSubmit}>
           {this.state.NLTLYR > 1 &&
             <div>
@@ -103,7 +104,7 @@ export default class WindingDesLVSpiral1 extends React.Component {
               <p>Thinning of LT Winding (LT Gap: {this.state.LTGAP})</p>
               <select
                 onChange={this.onInputChangeBool}
-                value={this.state.loss_tolerance}
+                value={this.state.LTGAPBOOL}
                 name="LTGAPBOOL"
               >
                 <option value="true">Yes</option>
