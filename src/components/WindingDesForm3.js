@@ -10,6 +10,21 @@ export default class WindingDesForm3 extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const addToState = {};
+    if (this.state.hv_winding == 'disc' && this.state.lv_winding == 'disc') {
+      addToState.CLRLTY = this.state.FINCLRHTY;
+      addToState.WHLT = this.state.HTWH;
+    }
+
+    this.setState(() => {
+      return {
+        ...addToState
+      };
+    });
+
+  }
+
   onInputChangeNumber = (event) => {
         const value = event.target.value;
         const name = event.target.name;
@@ -52,8 +67,6 @@ export default class WindingDesForm3 extends React.Component {
     let addToState = {};
 
     if (this.state.hv_winding == 'disc' && this.state.lv_winding == 'disc') {
-      addToState.CLRLTY = this.state.FINCLRHTY;
-      addToState.WHLT = this.state.HTWH;
       addToState.WD3X = 1; // winding design 3's X
     } else {
       if (this.state.clamp_ring_material == 'mild_steel' && this.state.clamp_ring_thickness > 0) {

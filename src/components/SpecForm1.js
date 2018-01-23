@@ -36,7 +36,28 @@ export default class SpecForm1 extends React.Component {
             HTGAP: 0,
             LTDUCT: 0,
             DLVEDDY: 0,
-            LEND: 0
+            LEND: 0,
+            HTND: 1,
+            HTNW: 1,
+            DLVTOT: 0,
+            DLVNORN: 0
+            ,DHVNOR: 0
+            ,DHVNORN: 0
+            ,DLVMID: 0
+            ,DLVMIDN: 0
+            ,DHVTAP: 0
+            ,DHVTAPN: 0
+            ,NHTAP: 0
+            ,TOTTAPN: 0
+            ,DHVCOND: 1
+            ,DHVNORCWD: 0
+            ,DHVNORCTH: 0
+            ,DHVTAPCWD: 0
+            ,DHVTAPCTH: 0
+            ,DHVEDDY: 0
+            ,TAPEDDY: 0
+            ,LTGAP: 0
+            
         };
     }
 

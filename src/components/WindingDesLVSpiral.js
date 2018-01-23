@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { editSpecAfterSave } from '../actions/spec';
 // TODO import spiral1 & 2
-import { evalSpiral1, evalSpiral2 } from '../evaluators/eval_spiral';
+import { evalSpiral1, evalSpiral2 } from '../evaluators/spiral_lv';
 import  WindingDesLVSpiral2  from "./WindingDesLVSpiral2";
 import  WindingDesLVSpiral1  from "./WindingDesLVSpiral1";
 

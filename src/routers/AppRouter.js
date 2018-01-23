@@ -34,9 +34,11 @@ import WindingDes3A from '../components/WindingDes3A.js';
 import SetWdgTolChoose from "../components/SetWdgTolChoose.js";
 import SetWdgTolTight from "../components/SetWdgTolTight.js";
 import SetWdgTolFinal from "../components/SetWdgTolFinal.js";
+import WindingDesLVSpiral from '../components/WindingDesLVSpiral';
+
+import SetWindingType from '../components/SetWindingType';
 
 import Header from '../components/Header.js';
-import WindingDesLVSpiral from '../components/WindingDesLVSpiral';
 
 const history = createHistory();
 
@@ -92,6 +94,7 @@ const AppRouter = () => {
                 <Route path='/set_wdg_tol_tight' component={SetWdgTolTight} />
                 <Route path='/set_wdg_tol_final' component={SetWdgTolFinal} />
                 <Route path='/wdg_des_lv_spiral' component={WindingDesLVSpiral} />
+                <Route path='/set_winding_type' component={SetWindingType} />
                 <Refresh path='/refresh' />
 
             </Switch>

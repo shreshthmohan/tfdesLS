@@ -20,9 +20,10 @@ export default class WindingDesForm1 extends React.Component {
     // Repeated code. Already have a function in winding_init.js
     // Can just call it instead of the code below
     evalWindingType = () => {
+        let { lv_winding, hv_winding } = this.state;
         if (!this.state.hv_winding || !this.state.lv_winding) {
-            let lv_winding = this.state.lv_winding;
-            let hv_winding = this.state.hv_winding;
+            lv_winding = this.state.lv_winding ? this.state.lv_winding : '';
+            hv_winding = this.state.hv_winding ? this.state.hv_winding : '';
 
             if (this.state.nominal_lt_voltage < 6000) {
                 lv_winding = 'spiral';
@@ -63,10 +64,11 @@ export default class WindingDesForm1 extends React.Component {
 
 
     evalCrossoverLT = () => {
+        let LDIABM, LDIAB;
         if (this.state.lv_winding == 'crossover') {
-            const LDIABM = Math.sqrt(this.state.lt_area_m * 4 / Math.PI);
+            LDIABM = Math.sqrt(this.state.lt_area_m * 4 / Math.PI);
             if (this.state.LDIAB == 0) {
-                const LDIAB = LDIABM;
+                LDIAB = LDIABM;
             }
             this.setState(() => {
                 return {
@@ -78,9 +80,10 @@ export default class WindingDesForm1 extends React.Component {
     };
 
     evalCrossoverHT = () => {
+        let HDIABM, HDIAB;
         if (this.state.hv_winding == 'crossover') {
-            const HDIABM = Math.sqrt(this.state.ht_area_m * 4 / Math.PI);
-            let HDIAB = this.state.HDIAB;
+            HDIABM = Math.sqrt(this.state.ht_area_m * 4 / Math.PI);
+            HDIAB = this.state.HDIAB;
             if (this.state.HDIAB == 0) {
                 HDIAB = HDIABM;
             }

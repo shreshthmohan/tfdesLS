@@ -1,298 +1,442 @@
 import roundFactor from './round_factor';
+import roundFloat from './round_float';
 
-export const evalDiscHV1 = (spec) => {
+export const evalDiscHV1 = (data) => {
 
-    const params = {};
-    // TODO test what happens when properties are added to a read-only object
-    //TODO add DHV* to saved design object -- localStorage
-    // Also NHTAP - 0
-    
-    params.DHVTOT = spec.DHVTAP + spec.DHVNOR;
+  console.log('from evalDiscHV1');
 
-    params.X1HT = spec.hv_leg * spec.turns_lt / spec.lv_leg; 
+  let {
+    DHVTOT
+    ,DHVTAP
+    ,DHVNOR
+    ,hv_leg
+    ,turns_lt
+    ,lv_leg
+    ,NHTAP
+    ,tapping_pc_max
+    ,tapping_pc_min
+    ,tap_step_size
+    ,DHVTAPN
 
-    params.NHTAP = params.X1HT * (spec.tapping_pc_max - spec.tapping_pc_min) / 100;
+  } = data;
+  // TODO test what happens when properties are added to a read-only object
+  //TODO add DHV* to saved design object -- localStorage
+  // Also NHTAP - 0
+  
+  DHVTOT = DHVTAP + DHVNOR;
 
-    if (spec.tapping_pc_max > 0) {
-        params.X1HT = params.X1HT * (1 + spec.tapping_pc_max/100);
+  let X1 = hv_leg * turns_lt / lv_leg; 
+
+  NHTAP = X1 * (tapping_pc_max - tapping_pc_min) / 100;
+
+  if (tapping_pc_max > 0) {
+    X1 = X1 * (1 + tapping_pc_max/100);
+  }
+
+  let X3 = 0;
+  let X2;
+  let NOTSTEP;
+
+  if (tapping_pc_max - tapping_pc_min > 0) {
+
+    X2 = hv_leg / lv_leg * turns_lt * tap_step_size / 100;
+    NOTSTEP = Math.floor((tapping_pc_max - tapping_pc_min)
+      / tap_step_size + 0.1);
+    X3 = X2 * NOTSTEP;
+  }
+
+  let X11, X12, X13, X14, X21, X22, X23, X24, X31, X32, X33, X34;
+
+  if (DHVTAP <= 0 || DHVNOR <= 0) {
+    if (tapping_pc_max - tapping_pc_min > 0) {
+      switch (true) {
+        case tap_step_size > 4 :
+          DHVTAP = NOTSTEP * 4;
+          DHVTAPN = X2 / 4;
+          break;
+        case tap_step_size > 2 && tap_step_size <= 4 :
+          DHVTAP = NOTSTEP * 2;
+          DHVTAPN = X2 / 2;
+          break;
+        case tap_step_size > 0 && tap_step_size <= 2 :
+          DHVTAP = NOTSTEP;
+          DHVTAPN = X2;
+          break;
+      }
+    } else {
+      DHVTAP = 0;
     }
 
-    let X3 = 0;
+    X11 = 60 - DHVTAP;
+    X12 = 64 - DHVTAP;
+    X13 = 68 - DHVTAP;
+    X14 = 72 - DHVTAP;
+    X21 = (X1 - X3) / X11;
+    X22 = (X1 - X3) / X12;
+    X23 = (X1 - X3) / X13;
+    X24 = (X1 - X3) / X14;
+    X31 = X21 - Math.floor(X21);
 
-    let X2 = 0;
-
-    if (spec.tapping_pc_max - spec.tapping_pc_min > 0) {
-
-        X2 = spec.hv_leg / spec.lv_leg * spec.turns_lt * spec.tap_step_size / 100;
-        params.NOTSTEP = Math.floor((spec.tapping_pc_max - spec.tapping_pc_min)
-            / spec.tap_step_size + 0.1);
-        X3 = X2 * params.NOTSTEP;
+    if (X31 < 0.001) {
+      X31 = 0.9;
     }
+    X32 = X22 - Math.floor(X22);
+    if (X32 < 0.001) {
+      X31 = 1;
+    }
+    X33 = X23 - Math.floor(X23);
+    if (X33 < 0.001) {
+      X31 = 1;
+    }
+    X34 = X24 - Math.floor(X24);
+    if (X34 < 0.001) {
+      X31 = 0.9;
+    }
+    if ((X31 > X32) && (X31 > X33)
+      && (X31 > X34)) {
 
-    params.DHVTAP = spec.DHVTAP || 0;
-    params.DHVTAPN = spec.DHVTAPN || 0;
+      DHVTOT = 60;
 
-    if (spec.DHVTAP <= 0 || spec.DHVNOR <= 0) {
-        if (spec.tapping_pc_max - spec.tapping_pc_min > 0) {
-            switch (true) {
-                case spec.tap_step_size > 4 :
-                    params.DHVTAP = params.NOTSTEP * 4;
-                    params.DHVTAPN = X2 / 4;
-                    break;
-                case spec.tap_step_size > 2 && spec.tap_step_size <= 4 :
-                    params.DHVTAP = params.NOTSTEP * 2;
-                    params.DHVTAPN = X2 / 2;
-                    break;
-                case spec.tap_step_size > 0 && spec.tap_step_size <= 2 :
-                    params.DHVTAP = params.NOTSTEP;
-                    params.DHVTAPN = X2;
-                    break;
-                default :
-                    break;
-            }
+    } else {
+      if ((X32 > X33) && (X32 > X34)) {
+        DHVTOT = 64;
+      } else {
+        if (X33 > X34) {
+          DHVTOT = 68;
         } else {
-            params.DHVTAP = 0;
-            params.DHVTAPN = 0;
+          DHVTOT = 72;
         }
-
-        params.X11HT = 60 - params.DHVTAP;
-        params.X12HT = 64 - params.DHVTAP;
-        params.X13HT = 68 - params.DHVTAP;
-        params.X14HT = 72 - params.DHVTAP;
-        params.X21HT = (params.X1HT - X3) / params.X11HT;
-        params.X22HT = (params.X1HT - X3) / params.X12HT;
-        params.X23HT = (params.X1HT - X3) / params.X13HT;
-        params.X24HT = (params.X1HT - X3) / params.X14HT;
-        params.X31HT = params.X21HT - Math.floor(params.X21HT);
-
-        if (params.X31HT < 0.001) {
-            params.X31HT = 0.9;
-        }
-        params.X32HT = params.X22HT - Math.floor(params.X22HT);
-        if (params.X32HT < 0.001) {
-            params.X31HT = 1;
-        }
-        params.X33HT = params.X23HT - Math.floor(params.X23HT);
-        if (params.X33HT < 0.001) {
-            params.X31HT = 1;
-        }
-        params.X34HT = params.X24HT - Math.floor(params.X24HT);
-        if (params.X34HT < 0.001) {
-            params.X31HT = 0.9;
-        }
-        if ((params.X31HT > params.X32HT) && (params.X31HT > params.X33HT)
-            && (params.X31HT > params.X34HT)) {
-
-            params.DHVTOT = 60;
-
-        } else {
-            if ((params.X32HT > params.X33HT) && (params.X32HT > params.X34HT)) {
-                params.DHVTOT = 64;
-            } else {
-                if (params.X33HT > params.X34HT) {
-                    params.DHVTOT = 68;
-                } else {
-                    params.DHVTOT = 72;
-                }
-            }
-        }
+      }
     }
+  }
 
-    console.log('going to print outout from evaldischv1');
-    console.log(params);
 
-    return params;
+  return {
+    ...data
+    ,DHVTOT
+    ,DHVTAP
+    ,DHVNOR
+    ,hv_leg
+    ,turns_lt
+    ,lv_leg
+    ,NHTAP
+    ,tapping_pc_max
+    ,tapping_pc_min
+    ,tap_step_size
+    ,DHVTAPN
+    ,X1
+    ,X2
+    ,X3
+    ,X11
+    ,X12
+    ,X13
+    ,X14
+    ,X21
+    ,X22
+    ,X23
+    ,X24
+    ,X31
+    ,X32
+    ,X33
+    ,X34
+  };
 };
 // to display HV Discs after eval if 
 
-export const evalDiscHV2 = (spec) => {
+export const evalDiscHV2 = (data) => {
 
-    const params = {};
-
-    params.DHVNOR = spec.DHVTOT - spec.DHVTAP;
-
-    params.E2_X21HT = spec.DHVTAPN * spec.DHVTAP;
-
-    params.E2_X22HT = Math.floor(params.E2_X21HT);
-
-    if (params.E2_X21HT - params.E2_X22HT > 0.01) {
-        params.E2_X21HT = params.E2_X22HT + 1;
-    }
-
-    params.TOTTAPN = params.E2_X21HT;
-
-    // Integer - Turns per tap disc
-    params.E2_X23HT = Math.floor(spec.DHVTAPN);
-
-    if (spec.DHVTAPN - params.E2_X23HT > 0.01) {
-        params.E2_X23HT = params.E2_X23HT + 1;
-    }
-
-    // Integer - Turns per Normal Disc
+  let {
+    DHVNOR
+    ,DHVTOT
+    ,DHVTAP
+    ,DHVTAPN
+    ,TOTTAPN
+    ,turns_ht
+    ,DHVNORN
+    ,HTWH
+    ,DHVBRINS
+    ,DHVINS
+    ,covering_ht
+    ,DHVCOND
+    ,ht_area
     
-    params.E2_X25HT = (spec.turns_ht - params.TOTTAPN) / (spec.DHVTOT - spec.DHVTAP); 
-    params.DHVNORN = params.E2_X25HT;
+  } = data;
 
-    if (params.E2_X25HT - Math.floor(params.E2_X25HT) > 0.001) {
-        params.E2_X25HT = Math.floor(params.E2_X25HT) + 1;
-    }
+  DHVNOR = DHVTOT - DHVTAP;
 
-    params.E2_X26HT = Math.floor(spec.DHVTAPN);
+  let X21 = DHVTAPN * DHVTAP;
 
-    if (spec.DHVTAPN - params.E2_X25HT > 0.01) {
-        params.E2_X26HT = params.E2_X26HT + 1;
-    }
+  let X22 = Math.floor(X21);
 
-    params.E2_X31HT = (spec.HTWH - spec.DHVBRINS * 2.8 / 3 + 2 * spec.DHVINS * 2.8
-        / 3 + 1) / (spec.DHVTOT - (1 - params.E2_X23HT / params.E2_X25HT) * spec.DHVTAP); 
+  if (X21 - X22 > 0.01) {
+    X21 = X22 + 1;
+  }
 
+  TOTTAPN = X21;
 
-    params.E2_X31HT = spec.X32HT - spec.DHVINS * 2.8 / 3;
+  // Integer - Turns per tap disc
+  let X23 = Math.floor(DHVTAPN);
 
-    params.E2_X32HT = params.E2_X31HT - spec.covering_ht;
+  if (DHVTAPN - X23 > 0.01) {
+    X23 = X23 + 1;
+  }
 
-    params.DHVCOND = 1;
+  // Integer - Turns per Normal Disc
+  let X25 = (turns_ht - TOTTAPN) / (DHVTOT - DHVTAP); 
+  DHVNORN = X25;
 
-    params.E2_X33HT = (spec.ht_area + 0.22) / params.E2_X32HT; 
+  if (X25 - Math.floor(X25) > 0.001) {
+    X25 = Math.floor(X25) + 1;
+  }
 
-    if (params.E2_X33HT > 1.6 && params.E2_X33HT <= 2.4) {
-        params.E2_X33HT = params.E2_X33HT + 0.13 / params.E2_X32HT;
+  let X26 = Math.floor(DHVTAPN);
+
+  if (DHVTAPN - X26 > 0.01) {
+    X26 = X26 + 1;
+  }
+
+  let X31 = (HTWH - DHVBRINS * 2.8 / 3 + 2 * DHVINS * 2.8 / 3 + 1) / (DHVTOT - (1 - X23 / X25) * DHVTAP); 
+
+  X31 = X31 - DHVINS * 2.8 / 3;
+
+  let X32 = X31 - covering_ht;
+
+  DHVCOND = 1;
+
+  let X33 = (ht_area + 0.22) / X32; 
+
+  if (X33 > 1.6 && X33 <= 2.4) {
+    X33 = X33 + 0.13 / X32;
+  } else {
+    if (X33 > 2.4 && X33 <= 3.55) {
+      X33 = X33 + 0.33 / X32;
     } else {
-        if (params.E2_X33HT > 2.4 && params.E2_X33HT <= 3.55) {
-            params.E2_X33HT = params.E2_X33HT + 0.33 / params.E2_X32HT;
-        } else {
-            if (params.E2_X33HT > 3.55) {
-                params.E2_X33HT = params.E2_X33HT + 0.64 / params.E2_X32HT;
-            }
-        }
+      if (X33 > 3.55) {
+        X33 = X33 + 0.64 / X32;
+      }
     }
+  }
 
-    if (params.E2_X33HT > 3) {
-        params.E2_X34HT = Math.floor(params.E2_X33HT / 3) + 1;
-    }
+  // is X33 greater than 3
+  // true / false
+  let X33G3, X34;
 
-    console.log('going to print outout from evaldischv2');
-    console.log(params);
+  if (X33 > 3) {
+    X34 = Math.floor(X33 / 3) + 1;
+    X33G3 = true;
+  } else {
+    X33G3 = false;
+  }
 
-    return params;
+
+
+  console.log('going to print outout from evaldischv2');
+
+  return {
+    ...data
+    ,DHVNOR
+    ,DHVTOT
+    ,DHVTAP
+    ,DHVTAPN
+    ,TOTTAPN
+    ,turns_ht
+    ,DHVNORN
+    ,HTWH
+    ,DHVBRINS
+    ,DHVINS
+    ,covering_ht
+    ,DHVCOND
+    ,ht_area
+    ,X23
+    ,X25
+    ,X33
+    ,X33G3
+    ,X34
+    ,X32
+  };
 };
 
-export const evalDiscHV2A = (spec) => {
+export const evalDiscHV2A = (data) => {
 
-    let params = {};
-    params.DHVCOND = spec.E2_X34HT;
-    params.E2_X33HT = (spec.ht_area / params.DHVCOND + 0.22) / spec.E2_X32HT;
+  let {
+    DHVCOND
+    ,X34
+    ,X33
+    ,X32
+    ,ht_area
+  } = data;
 
-    if (params.E2_X33HT > 1.6 && params.E2_X33HT <= 2.4) {
-        params.E2_X33HT = params.E2_X33HT + 0.13 / params.E2_X33HT;
+  DHVCOND = X34;
+  X33 = (ht_area / DHVCOND + 0.22) / X32;
+
+  if (X33 > 1.6 && X33 <= 2.4) {
+    X33 = X33 + 0.13 / X32;
+  } else {
+    if (X33 > 2.4 && X33 <= 3.55) {
+      X33 = X33 + 0.33 / X32;
     } else {
-        if (params.E2_X33HT > 2.4 && params.E2_X33HT <= 3.55) {
-            params.E2_X33HT = params.E2_X33HT + 0.33 / params.E2_X33HT;
-        } else {
-            if (params.E2_X33HT > 3.55) {
-                params.E2_X33HT = params.E2_X33HT + 0.64 / params.E2_X33HT;
-            }
-        }
+      if (X33 > 3.55) {
+        X33 = X33 + 0.64 / X32;
+      }
     }
+  }
 
-    return params;
+  return {
+    ...data
+    ,DHVCOND
+    ,X34
+    ,X33
+    ,X32
+    ,ht_area
+  };
 };
 
 
-export const evalDiscHV3 = (spec) => {
-    let params = {};
+export const evalDiscHV3 = (data) => {
 
-    params.E3_X35HT = 0;
+  let {
+    HTWH
+    ,X32
+    ,X33
+    ,X23
+    ,X25
+    ,covering_ht
+    ,DHVNOR
+    ,DHVTAP
+    ,DHVTAPN
+    ,DHVTAPCTH
+    ,DHVTAPCWD
+    ,DHVINS
+    ,DHVBRINS
+    ,DHVTOT
+    ,ht_area
+    ,DHVNORCWD
+    ,DHVNORCTH
+    ,DHVNORN
+    ,DHVCOND
+    ,winding_conductor_ht
+    ,DHVEDDY
+    ,TAPEDDY
+    ,LTGAP
+    ,frequency
+    ,B2
 
-    params.E3_X32HT = spec.E2_X32HT;
-    params.E3_X33HT = spec.E2_X33HT;
+  } = data;
 
-    while (params.E3_X35HT - spec.HTWH >= 0.4) {
-        params.E3_X36HT = params.E3_X32HT + spec.convering_ht;
-        params.E3_X37HT = params.E3_X33HT + spec.convering_ht;
+  let X35 = 0;
+  let X36, X37, X38, X42, X43, X46;
 
-        if (spec.E2_X23HT > 0) { // if tappings
-            params.E3_X38HT = params.E3_X37HT * spec.E2_X25HT / spec.E2_X23HT;
-            params.E3_X43HT = params.E3_X38HT * spec.covering_ht;
-            params.E3_X42HT = params.E3_X32HT * params.E3_X33HT / params.E3_X43HT;
-            params.E3_X46HT = params.E3_X42HT + spec.covering_ht;
-        } else {
-            params.E3_X46HT = 0;
-        }
+  while (Math.abs(X35 - HTWH) >= 0.4) {
+    X36 = X32 + covering_ht;
+    X37 = X33 + covering_ht;
 
-        params.E3_X35HT = spec.DHVNOR * params.E3_X36HT 
-            + spec.DHVTAP * params.E3_X46HT 
-            + spec.DHVINS * 2.8 / 3 * (spec.DHVTOT - 2) 
-            + spec.DHVBRINS * 2.8 / 3 - 1;
-
-        params.E3_X32HT = params.E2_X32HT +
-            (spec.HTWH - params.E3_X35HT) / spec.DHVTOT;
-
-        params.E3_X33HT = (spec.ht_area / spec.DHVCOND + 0.22) / params.E3_X32HT; 
-
-        if (params.E3_X33HT > 1.6 && params.E3_X33HT <= 2.4) {
-            params.E3_X33HT = params.E3_X33HT + 0.13 / params.E3_X32HT;
-        } else {
-            if (params.E3_X33HT > 2.4 && params.E3_X33HT <= 3.55) {
-                params.E3_X33HT = params.E3_X33HT + 0.33 / params.E3_X32HT;
-            } else {
-                if (params.E3_X33HT > 3.55) {
-                    params.E3_X33HT = params.E3_X33HT + 0.64 / params.E3_X32HT;
-                }
-            }
-        }
-    } 
-
-    params.DHVNORCWD = Math.floor(params.E3_X32HT * 100 + 0.5) / 100;
-    params.DHVNORCTH = Math.floor(params.E3_X33HT * 100 + 0.5) / 100;
-
-    // If TAPP > 0
-    if (spec.E2_X23HT > 0) {
-        params.DHVTAPCWD = Math.floor(params.E3_X42HT * 100  + 0.5) / 100;
-        params.DHVTAPCTH = Math.floor(params.E3_X43HT * 100  + 0.5) / 100;
+    if (X23 > 0) { // if tappings
+      X38 = X37 * X25 / X23;
+      X43 = X38 - covering_ht;
+      X42 = X32 * X33 / X43;
+      X46 = X42 + covering_ht;
     } else {
-        params.DHVTAPCWD = 0;
-        params.DHVTAPCTH = 0;
+      X46 = 0;
     }
 
-    const x = params.DHVNORCWD * params.DHVNORCTH - roundFactor(params.DHVNORCTH);
+    X35 = DHVNOR * X36 
+      + DHVTAP * X46 
+      + DHVINS * 2.8 / 3 * (DHVTOT - 2) 
+      + DHVBRINS * 2.8 / 3 - 1;
 
-    params.XXA = x * spec.DHVCOND;
+    X32 = X32 + (HTWH - X35) / DHVTOT;
+
+    X33 = (ht_area / DHVCOND + 0.22) / X32; 
+
+    if (X33 > 1.6 && X33 <= 2.4) {
+      X33 = X33 + 0.13 / X32;
+    } else {
+      if (X33 > 2.4 && X33 <= 3.55) {
+        X33 = X33 + 0.33 / X32;
+      } else {
+        if (X33 > 3.55) {
+          X33 = X33 + 0.64 / X32;
+        }
+      }
+    }
+  }
+
+  DHVNORCWD = roundFloat(Math.floor(X32 * 100 + 0.5) / 100, 2);
+  DHVNORCTH = roundFloat(Math.floor(X33 * 100 + 0.5) / 100, 2);
+
+  // If TAPP > 0
+  if (X23 > 0) {
+    DHVTAPCWD = roundFloat(Math.floor(X42 * 100  + 0.5) / 100, 2);
+    DHVTAPCTH = roundFloat(Math.floor(X43 * 100  + 0.5) / 100, 2);
+  } else {
+    DHVTAPCWD = 0;
+    DHVTAPCTH = 0;
+  }
+
+  const X = DHVNORCWD * DHVNORCTH - roundFactor(DHVNORCTH);
+
+  const XXA = X * DHVCOND;
+  
+  B2 = (DHVNORCTH + covering_ht) * X25 * DHVCOND * 1.01;
+  B2 = roundFloat(Math.floor(2 * B2 + 0.35) / 2, 1);
+
+  let BETA = (DHVNORCWD * DHVNOR / 2 * 0.95 
+    / (DHVNOR * (DHVNORCWD + 0.5 + DHVINS * 2.8 / 3) / 2)); 
+
+  let XF = 3.92;
+
+  if (winding_conductor_ht == 'aluminium') {
+    XF = 3.92 * 2100 * 2100 / 3423 / 3423;
+  }
+
+  DHVEDDY = roundFloat((XF * (DHVNORCTH ** 4) * (DHVNORN ** 2)
+    * (DHVCOND ** 2) * (frequency ** 2) * (BETA ** 2) / (10 ** 7)), 2); 
+
+  if (X23 > 0) {
+    BETA = (DHVTAPCWD * DHVTAP / 2 * 0.96 
+    / (DHVTAP * (DHVTAPCWD + 0.5 + DHVINS * 2.8 / 3) / 2)); 
+    XF = 3.92;
+    if (winding_conductor_ht == 'aluminium') {
+      XF = 3.92 * 2100 * 2100 / 3423 / 3423;
+    }
+
+    TAPEDDY = (XF * (DHVTAPCTH ** 4) * (DHVTAPN ** 2)
+      * (DHVCOND ** 2) * (frequency ** 2) * (BETA ** 2) / (10 ** 7)); 
     
-    params.B2 = (params.DHVNORCTH + spec.covering_ht) * spec.E2_X25HT * spec.DHVCOND
-        * 1.01;
-    params.B2 = Math.floor(2 * params.B2 + 0.35) / 2;
+    LTGAP = DHVBRINS * 2.8 / 3 + DHVINS * (DHVTAP / 2 - 1)
+      * 2.8 / 3 + X46 * (DHVTAP / 2);
+  } else {
+    TAPEDDY = 0;
+    LTGAP = 0;
+  }
 
-    let BETA = (params.DHVNORCWD * params.DHVNOR / 2 * 0.95 
-        / (spec.DHVNOR * (params.DHVNORCWD + 0.5 + spec.DHVINS * 2.8 / 3) / 2)); 
-
-    let XF = 3.92;
-
-    if (spec.winding_conductor_ht == 'aluminium') {
-        XF = 3.92 * 2100 * 2100 / 3423 / 3423;
-    }
-
-    params.DHVEDDY = (XF * (params.DHVNORCTH ^ 4) * (spec.DHVNORN ^ 2)
-        * (spec.DHVCOND ^ 2) * (spec.frequency ^ 2) * (BETA ^ 2) / (10 ^ 7)); 
-
-    if (spec.E2_X23HT > 0) {
-        BETA = (params.DHVTAPCWD * params.DHVTAP / 2 * 0.96 
-        / (spec.DHVTAP * (params.DHVTAPCWD + 0.5 + spec.DHVINS * 2.8 / 3) / 2)); 
-        XF = 3.92;
-        if (spec.winding_conductor_ht == 'aluminium') {
-            XF = 3.92 * 2100 * 2100 / 3423 / 3423;
-        }
-
-        params.TAPEDDY = (XF * (params.DHVTAPCTH ^ 4) * (spec.DHVTAPN ^ 2)
-            * (spec.DHVCOND ^ 2) * (spec.frequency ^ 2) * (BETA ^ 2) / (10 ^ 7)); 
-        
-        params.LTGAP = spec.DHVBRINS * 2.8 / 3 + spec.DHVINS * (spec.DHVTAP /2 - 1)
-            * 2.8 / 3 + params.E3_X46HT * (spec.DHVTAP / 2);
-    } else {
-        params.TAPEDDY = 0;
-        params.LTGAP = 0;
-    }
-
-    return params;
+  return {
+    ...data
+    ,XXA
+    ,HTWH
+    ,X32
+    ,X33
+    ,X23
+    ,X25
+    ,covering_ht
+    ,DHVNOR
+    ,DHVTAP
+    ,DHVTAPN
+    ,DHVTAPCTH
+    ,DHVTAPCWD
+    ,DHVINS
+    ,DHVBRINS
+    ,DHVTOT
+    ,ht_area
+    ,DHVNORCWD
+    ,DHVNORCTH
+    ,DHVCOND
+    ,winding_conductor_ht
+    ,DHVEDDY
+    ,TAPEDDY
+    ,LTGAP
+    ,frequency
+    ,B2
+  };
 
 };

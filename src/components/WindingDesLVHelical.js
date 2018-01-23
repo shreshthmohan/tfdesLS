@@ -1,18 +1,17 @@
 import React from 'react';
 
-export default class WindingDesLVSpiral1 extends React.Component {
+export default class WindingDesLVHelical extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      ...props.specFromStore,
-      WHLTE  : 0,
-      LTGAPBOOL: false
+      ...props.specFromStore
+      ,NLTLYR: 1
+      ,LTKRAFT: 0
+      ,LTGAPBOOL: false
+
     };
-
-
   }
-
   onInputChangeBool = (event) => {
     const name = event.target.name;
     const value = event.target.value === "true" ? true : false;
@@ -34,7 +33,6 @@ export default class WindingDesLVSpiral1 extends React.Component {
       });
     }
   };
-
   onBlur = (event) => {
     const value = parseFloat(event.target.value) || 0;
     const name = event.target.name;
@@ -46,8 +44,7 @@ export default class WindingDesLVSpiral1 extends React.Component {
     });
     
   };
-
-  onKeyDown(event) {
+  onKeyDown = (event) => {
     const value = parseFloat(event.target.value) || 0;
     const name = event.target.name;
 
@@ -64,40 +61,23 @@ export default class WindingDesLVSpiral1 extends React.Component {
     event.preventDefault();
 
     this.props.onSubmit(this.state);
-
-  }
+  };
 
   render() {
-    const Fragment = React.Fragment;
-    return(
+    return (
       <div>
         <form onSubmit={this.onSubmit}>
-          {this.state.NLTLYR > 1 &&
-            <div>
-              <label>
-                LT Duct Size in mm
-              </label>
-              <input
-                  type="text"
-                  onChange={this.onInputChangeNumber}
-                  onBlur={this.onBlur}
-                  onKeyDown={this.onKeyDown}
-                  value={this.state.LTDUCT}
-                  name="LTDUCT"
-              />
-              <label>
-                LT inter-layer Kraft Paper in mil
-              </label>
-              <input
-                  type="text"
-                  onChange={this.onInputChangeNumber}
-                  onBlur={this.onBlur}
-                  onKeyDown={this.onKeyDown}
-                  value={this.state.LTKRAFT}
-                  name="LTKRAFT"
-              />
-            </div>
-          }
+          <label>
+            LT horizontal duct size (mm) b/w conductors
+          </label>
+          <input
+            type="text"
+            onChange={this.onInputChangeNumber}
+            onBlur={this.onBlur}
+            onKeyDown={this.onKeyDown}
+            value={this.state.LTDUCT}
+            name="LTDUCT"
+          />
           {this.state.LTGAP > 0 &&
             <div>
               <p>Thinning of LT Winding (LT Gap: {this.state.LTGAP})</p>
@@ -117,20 +97,19 @@ export default class WindingDesLVSpiral1 extends React.Component {
                 Set Thinning of LT Winding, i.e. LT Gap
               </label>
               <input
-                type="text"
-                onChange={this.onInputChangeNumber}
-                onBlur={this.onBlur}
-                onKeyDown={this.onKeyDown}
-                value={this.state.LTGAP}
-                name="LTGAP"
+                  type="text"
+                  onChange={this.onInputChangeNumber}
+                  onBlur={this.onBlur}
+                  onKeyDown={this.onKeyDown}
+                  value={this.state.LTGAP}
+                  name="LTGAP"
               />
             </div>
           }
           <button>Submit</button>
         </form>
+        
       </div>
     );
   }
-
-
 }

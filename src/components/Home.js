@@ -11,6 +11,7 @@ const Home = () => {
           <NavLink className="text-center list-group-item" to="/choose_des_edit">Edit Specifications</NavLink>
           <NavLink className="text-center list-group-item" to="/choose_des_ini">Initial Core Design</NavLink>
           <NavLink className="text-center list-group-item" to="/choose_des_wind">Winding Design</NavLink>
+          <NavLink className="text-center list-group-item" to="/set_winding_type">Set Winding Types</NavLink>
         </ul>
         <br />
         <ul className="home-menu list-group">
