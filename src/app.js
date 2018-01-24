@@ -21,3 +21,8 @@ store.subscribe(() => {
     const spec =  store.getState();
     console.log(spec);
 });
+
+
+// TODO List
+// Screen to set costing params
+// 

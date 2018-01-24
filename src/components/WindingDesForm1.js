@@ -232,7 +232,16 @@ export default class WindingDesForm1 extends React.Component {
                         </div>
                     }
                     <div>
-                    <p>No. of HT Winding turns: {this.state.turns_ht} TODO ASK Get?</p>
+                    <label>No. of HT Winding turns 
+                    </label>
+                    <input
+                        type="text"
+                        onChange={this.onInputChangeNumber}
+                        onBlur={this.onBlur}
+                        onKeyDown={this.onKeyDown}
+                        value={this.state.turns_ht}
+                        name="turns_ht"
+                    />
                     <p>HT: {this.state.hv_winding}</p>
                     </div>
                     {(this.state.hv_winding == 'spiral'

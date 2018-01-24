@@ -83,6 +83,9 @@ export default class WindingDesForm3 extends React.Component {
     addToState.LTNW = 1;
     addToState.LTND = 1;
 
+    console.log('WH:',this.state.WH);
+    console.log('CLRLTY:', this.state.CLRLTY);
+
     this.props.onSubmit({
       ...this.state,
       ...addToState

@@ -306,11 +306,6 @@ export default class SpecForm3 extends React.Component {
             }
             
             </div>
-            <div className="alert alert-danger">TODO Ask. There is a mistake in
-            DBASE code. You are calculating RADSPNO before KVA is input by user
-            So your value is always 6
-            Confirm if my understanding is correct
-            </div>
             <button className="btn btn-primary">Check & Submit Data</button>
             </div>
         </form>
@@ -319,6 +314,4 @@ export default class SpecForm3 extends React.Component {
     );
   };
 };
-
-// TODO set stiffener count to 0 when submitting data if corrugated wall sheet ...
 

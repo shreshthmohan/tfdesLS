@@ -110,7 +110,13 @@ export default class WindingDesForm2Disc extends React.Component {
   onSubmit = (event) => {
     event.preventDefault();
 
-    this.props.onSubmit({...this.state, retryDisc: false});
+    const ACAXL = this.state.HTWH;
+
+    this.props.onSubmit({
+      ...this.state,
+      ACAXL
+      ,retryDisc: false
+    });
   };
 
   retryDisc = (event) => {

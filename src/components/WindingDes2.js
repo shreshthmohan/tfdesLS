@@ -26,7 +26,7 @@ const WindingDes2 = (props) => {
               props.history.push('/refresh/winding_des2');
             } else {
               props.dispatch(editSpecAfterSave(specFromForm));
-              props.history.push('/winding_des3');
+              props.history.push('/winding_des2a');
               // TODO : Des3?
             }
           }}

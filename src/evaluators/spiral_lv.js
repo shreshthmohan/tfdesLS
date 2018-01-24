@@ -177,7 +177,7 @@ export const evalSpiral2 = (data) => {
   }
 
   while ((WD + DEP) * 0.6 > rod_size) {
-    if (WD * NWD / (NWD + 1) > 8) {
+    if (WD * NW / (NW + 1) > 8) {
       if (ND > 1 && lt_transpose === true) {
         X = 1 * (WDI - WDI * NW / (NW + 1)) / ((TPERLYR + 1) * NW + 1);
         WDI = (WDI * ND + X) / (ND + 1);
@@ -343,6 +343,9 @@ export const evalSpiral1 = (data) => {
   }
 
 
+  console.log('WHLT:', WHLT);
+  console.log('LEnd:', LEND);
+  console.log('C3:', C3);
   const WHXX = (WHLT - 2 * LEND) * C3;
   let ND = 1;
   let NW = 1;
@@ -357,8 +360,14 @@ export const evalSpiral1 = (data) => {
   let WD;
 
 
+  console.log('WHXX:', WHXX);
+  console.log('DEP:', DEP);
+
   while (XXX == 1 || NWO != NW) {
     NWO = NW;
+    //console.log('NW:', NW);
+    //console.log('NWO:', NWO);
+    //console.log('DEP:', DEP);
     if (DEP > C5) {
       if (lt_transpose) {
         if (kva < 200) {
@@ -408,7 +417,12 @@ export const evalSpiral1 = (data) => {
     }
     WD = WDI - covering_lt;
     WD = roundFloat(Math.floor(100 * WD + 0.5) / 100, 2);
+    console.log('lt_area:', lt_area);
+    console.log('NW:', NW);
+    console.log('ND:', ND);
     DEP = lt_area / WD / NW / ND;
+    console.log('DEP:', DEP);
+    break;
     if (DEP <= C5) {
       XXX = 0;
     }
@@ -426,7 +440,7 @@ export const evalSpiral1 = (data) => {
   }
 
   while ((WD + DEP) * 0.6 > rod_size) {
-    if (WD * NWD / (NWD + 1) > 8) {
+    if (WD * NW / (NW + 1) > 8) {
       if (ND > 1 && lt_transpose === true) {
         X = (WDI - WDI * NW / (NW + 1)) / ((TPERLYR + 1) * NW + 1);
         WDI = (WDI * ND + X) / (ND + 1);

@@ -81,7 +81,7 @@ export default class SpecForm4 extends React.Component {
                 />
               </div>
               <div className="form-group col-md-4">
-                <label>Conductor Rad Size
+                <label>Conductor Rod Size
                 </label>
                 <input
                   type="text"

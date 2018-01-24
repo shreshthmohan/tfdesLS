@@ -1,3 +1,4 @@
+import roundFloat from './round_float';
 
 const evalCurrentFlux = (spec) => {
     let current_flux = {};
@@ -88,8 +89,8 @@ const evalCurrentFlux = (spec) => {
             break;
     }
 
-    current_flux.impedance_low = (1 - spec.impedance_tolerance / 100) * spec.impedance_pc;
-    current_flux.impedance_high = (1 + spec.impedance_tolerance / 100) * spec.impedance_pc;
+    current_flux.impedance_low = roundFloat((1 - spec.impedance_tolerance / 100) * spec.impedance_pc, 3);
+    current_flux.impedance_high = roundFloat((1 + spec.impedance_tolerance / 100) * spec.impedance_pc, 3);
 
     return current_flux;
 };
