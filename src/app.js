@@ -24,5 +24,6 @@ store.subscribe(() => {
 
 
 // TODO List
+// Winding Des 3b
 // Screen to set costing params
 // 
